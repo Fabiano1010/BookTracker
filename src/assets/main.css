@@ -39,3 +39,7 @@ body {
 @media (min-width: 1024px) {
 
 }
+.icon{
+  height: 2rem;
+  margin-right: 5px;
+}

@@ -5,13 +5,13 @@
    <g>
     <title stroke="#700045">Layer 1</title>
     <g id="svg_12">
-     <path id="svg_19" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m4.27274,24.99999l6.21818,0"/>
-     <path id="svg_18" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m39.50909,24.99999l6.21818,0"/>
-     <path id="svg_17" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m25.00001,46.35536l0,-6.40661"/>
-     <path id="svg_16" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m25.00001,10.05124l0,-6.40661"/>
-     <path id="svg_15" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m20.85455,24.99999l4.14545,0l4.14545,0"/>
-     <path id="svg_14" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m25.00001,29.27107l0,-4.27107l0,-4.27107"/>
-     <path id="svg_13" stroke-linecap="round" stroke-width="1.5" stroke="#700045" d="m14.63637,6.50159c3.04871,-1.81702 6.58837,-2.85696 10.36363,-2.85696c11.44725,0 20.72727,9.56112 20.72727,21.35537c0,11.79414 -9.28001,21.35537 -20.72727,21.35537c-11.44736,0 -20.72727,-9.56122 -20.72727,-21.35537c0,-3.88967 1.00936,-7.53659 2.77294,-10.67768"/>
+     <path id="svg_19" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m4.27274,24.99999l6.21818,0"/>
+     <path id="svg_18" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m39.50909,24.99999l6.21818,0"/>
+     <path id="svg_17" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m25.00001,46.35536l0,-6.40661"/>
+     <path id="svg_16" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m25.00001,10.05124l0,-6.40661"/>
+     <path id="svg_15" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m20.85455,24.99999l4.14545,0l4.14545,0"/>
+     <path id="svg_14" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m25.00001,29.27107l0,-4.27107l0,-4.27107"/>
+     <path id="svg_13" stroke-linecap="round" stroke-width="2.5" stroke="#700045" d="m14.63637,6.50159c3.04871,-1.81702 6.58837,-2.85696 10.36363,-2.85696c11.44725,0 20.72727,9.56112 20.72727,21.35537c0,11.79414 -9.28001,21.35537 -20.72727,21.35537c-11.44736,0 -20.72727,-9.56122 -20.72727,-21.35537c0,-3.88967 1.00936,-7.53659 2.77294,-10.67768"/>
     </g>
     <g>
      <path d="m30.9713,31.27775l-14.04548,0c-1.08849,0 -1.63274,0 -2.07927,0.13128c-1.21175,0.35632 -2.15822,1.39509 -2.48291,2.72481" stroke="#700045" stroke-width="1.5"/>

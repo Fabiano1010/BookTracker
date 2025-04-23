@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, API_KEY } from '../config';
+import {BASE_URL, API_KEY} from '../config';
 
 export default {
   searchBooks(query, startIndex = 0, maxResults = 10) {

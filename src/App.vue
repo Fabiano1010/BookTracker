@@ -22,7 +22,7 @@ import { ref } from 'vue'
    
         
         <!-- <transition mode="out-in"> -->
-         <component :is="activeComponent" class="animated-component"/>
+         <component :is="activeComponent"/>
         <!-- </transition> -->
 
 
@@ -130,10 +130,7 @@ export default {
   font-weight: bold;
   color: #42b983;
 }
-.icon{
-  height: 2rem;
-  margin-right: 5px;
-}
+
 
 .v-enter-active,
 .v-leave-active {
