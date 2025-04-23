@@ -59,7 +59,7 @@
             <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia"></textarea>
           </div>
         <div class="formBtns">
-          <button class="btn btnClear" type="reset">Wyczyść</button>
+          <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
           <button class="btn btnSave">Zapisz</button>
         </div>
         </form>
@@ -98,7 +98,11 @@
       async addBook(book){
           console.log(book);
           let div = document.querySelector("#choosenBookDisplay")
-          div.INNER
+          div.innerHTML = book
+          document.querySelector("#choosenBook").value=book;
+      },
+      async clearbook(){
+        document.querySelector("#choosenBookDisplay").innerHTML = "";
       }
     }
   };
@@ -153,6 +157,7 @@
     border-radius: 10px;
     padding: 1vw;
     background-color: rgba(0, 0, 0, 0.048);
+    width:15vw;
   }
   .bookForm div{
     margin-bottom: 2vh;
@@ -238,6 +243,10 @@
     outline: none;
     margin-top: 5px;
     
+  }
+  .choosenBookDisplay{
+    text-wrap: wrap;
+    text-align: center;
   }
 
 
