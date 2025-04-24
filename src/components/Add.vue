@@ -17,43 +17,43 @@
           </div>
         </div>
       
-        <form action="" class="bookForm" @submit.prevent="saveFormData">
-          <div class="choosenBookDisplay" id="choosenBookDisplay">{{ formData.title }}</div>
-          <input type="text" id="choosenBook" name="choosenBook" v-model="formData.title" hidden>
-          <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="formData.authors" hidden>
-          <div><input type="checkbox" name="isRead" id="isRead" v-model="formData.isread"> przeczytana</div>
+        <form action="" class="bookForm" @submit.prevent="saveBook">
+          <div class="choosenBookDisplay" id="choosenBookDisplay">{{ newBook.title }}</div>
+          <input type="text" id="choosenBook" name="choosenBook" v-model="newBook.title" hidden>
+          <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="newBook.authors" hidden>
+          <div><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> przeczytana</div>
           <div>
             <label for="readingTime">Czas czytania:</label><br>
-            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="formData.time"> h
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="newBook.time"> h
           </div>
           <div>
             <label for="rating">Ocena:</label>
               <div class="ratingRadio">
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="formData.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="newBook.rating" required>
                   <span>1</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="formData.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="newBook.rating" required>
                   <span>2</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="formData.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="newBook.rating" required>
                   <span>3</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="formData.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="newBook.rating" required>
                   <span>4</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="formData.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="newBook.rating" required>
                   <span>5</span>
                 </div>
               </div>
             </div>
           <div class="selectDiv">
             <label for="genry">Najlepiej pasujący gatunek: </label>
-            <select name="genry" id="genry" v-model="formData.genry" required>
+            <select name="genry" id="genry" v-model="newBook.genry" required>
               <option value="none">--wybierz gatunek--</option>
               <option value="crime">Kryminał</option>
               <option value="fantasy">Fantasy</option>
@@ -70,7 +70,7 @@
             </select>
           </div>
           <div>
-            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="formData.opinion" ></textarea>
+            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="newBook.opinion" ></textarea>
           </div>
         <div class="formBtns">
           <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
@@ -85,24 +85,31 @@
   
   <script>
   import booksApi from '../services/booksApi';
-  
+
   export default {
     name: 'Add',
+
     data() {
       return {
         searchQuery: '',
         books: [],
         loading: false,
         saved: '',
-        formData: {
-          title: '',
-          authors: '',
-          isread:'',
-          time: '',
-          rating: '',
-          genry: '',
-          opinion: ''
-        }
+        newBook: {
+            title: '',
+            authors: '',
+            isread:'false',
+            time: '',
+            rating: '',
+            genry: '',
+            opinion: '' 
+        },
+        library:{
+          books:[]
+        },
+        created() {
+          this.loadFromLocalStorage();
+        },
       };
     },
     methods: {
@@ -121,20 +128,25 @@
         }
       },
       addBook(book, authors){
-        this.formData.title = book;
-        this.formData.authors = authors;
-        
-       
+        this.newBook.title = book;
+        this.newBook.authors = authors;
       },
       clearbook(){
         this.choosenBook = '';
       },
-      saveFormData(){
-        const jsonData=JSON.stringify(this.formData);
-        localStorage.setItem('formData',jsonData);
-        console.log('Data saved:', jsonData);
-        saved="SAVED!"
-      }
+      saveBook(){
+
+        // let book=JSON.stringify(this.newBook);
+        this.library.books.push(this.newBook);
+        localStorage.setItem('bookLibrary', JSON.stringify(this.library));
+        console.log(localStorage.getItem('bookLibrary'))
+      
+        this.saved ="Zapisano!"
+  
+        // localStorage.clear()
+      },
+   
+
     }
   };
   
@@ -196,8 +208,8 @@
   .ratingRadio{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    width: 8vw;
 
   }
   .book{
