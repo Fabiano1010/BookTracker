@@ -2,44 +2,58 @@
 
 </script>
 <template>
-    <div class="bookFormDiv">
-      <div  class="booksQuery">
-        <input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" >
-        
-        <div v-if="loading">Ładowanie...</div>
-        
-        <div v-else class="books">
-            
+    <div class="bookQueryDiv">
+        <div  class="booksQuery">
+          <input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" >       
+          <div class="books">
+            <div v-if="loading" class="loading">Ładowanie...</div>
+            <div v-else>
               <div class="book" v-for="book in books" :key="book.id">
                 <h3>{{ book.volumeInfo.title }}</h3>
                 <p v-if="book.volumeInfo.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
-                
-                <button class="btn" @click="addBook(book.volumeInfo.title)">Wybierz</button>
+                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
               </div>
-            
-            
+            </div>
+          </div>
         </div>
-      </div>
-        <form action=""class="bookForm">
-          <div class="choosenBookDisplay" id="choosenBookDisplay"></div>
-          <input type="text" value="" id="choosenBook" name="choosenBookDisplay" hidden>
-          <div><input type="checkbox" name="isRead" id="isRead"> przeczytana</div>
-          <div><label for="readingTime">Czas czytania:</label><br><input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1"> h</div>
+      
+        <form action="" class="bookForm" @submit.prevent="saveFormData">
+          <div class="choosenBookDisplay" id="choosenBookDisplay">{{ formData.title }}</div>
+          <input type="text" id="choosenBook" name="choosenBook" v-model="formData.title" hidden>
+          <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="formData.authors" hidden>
+          <div><input type="checkbox" name="isRead" id="isRead" v-model="formData.isread"> przeczytana</div>
+          <div>
+            <label for="readingTime">Czas czytania:</label><br>
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="formData.time"> h
+          </div>
           <div>
             <label for="rating">Ocena:</label>
-                <span class="ratingRadio">
-                  <input type="radio" name="rating" id="rating" class="rating" required>
-                  <input type="radio" name="rating" id="rating" class="rating" required>
-                  <input type="radio" name="rating" id="rating" class="rating"required>
-                  <input type="radio" name="rating" id="rating" class="rating"required>
-                  <input type="radio" name="rating" id="rating" class="rating"required>
-                </span>
-                <span class="ratingText"><span>1</span> <span>2</span><span>3</span><span>4</span><span>5</span></span>
-              
-          </div>
+              <div class="ratingRadio">
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="formData.rating" required>
+                  <span>1</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="formData.rating" required>
+                  <span>2</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="formData.rating" required>
+                  <span>3</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="formData.rating" required>
+                  <span>4</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="formData.rating" required>
+                  <span>5</span>
+                </div>
+              </div>
+            </div>
           <div class="selectDiv">
             <label for="genry">Najlepiej pasujący gatunek: </label>
-            <select name="genry" id="genry" required>
+            <select name="genry" id="genry" v-model="formData.genry" required>
               <option value="none">--wybierz gatunek--</option>
               <option value="crime">Kryminał</option>
               <option value="fantasy">Fantasy</option>
@@ -56,16 +70,17 @@
             </select>
           </div>
           <div>
-            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia"></textarea>
+            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="formData.opinion" ></textarea>
           </div>
         <div class="formBtns">
           <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
-          <button class="btn btnSave">Zapisz</button>
+          <button class="btn btnSave" type="submit">Zapisz</button>
         </div>
-        </form>
-      
+      </form>
     </div>
-    
+    <div>
+      {{ saved }}
+    </div>
   </template>
   
   <script>
@@ -77,7 +92,17 @@
       return {
         searchQuery: '',
         books: [],
-        loading: false
+        loading: false,
+        saved: '',
+        formData: {
+          title: '',
+          authors: '',
+          isread:'',
+          time: '',
+          rating: '',
+          genry: '',
+          opinion: ''
+        }
       };
     },
     methods: {
@@ -95,30 +120,36 @@
           this.loading = false;
         }
       },
-      async addBook(book){
-          console.log(book);
-          let div = document.querySelector("#choosenBookDisplay")
-          div.innerHTML = book
-          document.querySelector("#choosenBook").value=book;
+      addBook(book, authors){
+        this.formData.title = book;
+        this.formData.authors = authors;
+        
+       
       },
-      async clearbook(){
-        document.querySelector("#choosenBookDisplay").innerHTML = "";
+      clearbook(){
+        this.choosenBook = '';
+      },
+      saveFormData(){
+        const jsonData=JSON.stringify(this.formData);
+        localStorage.setItem('formData',jsonData);
+        console.log('Data saved:', jsonData);
+        saved="SAVED!"
       }
     }
   };
   
   </script>
   <style>
-  .bookFormDiv{
-    width: 30vw;
+  .bookQueryDiv{
+    width: 50vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     
   }
   .booksQuery{
-    margin-top: 5vh;
+    margin-top: 0.5vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,7 +168,7 @@
   }
   .books{
     overflow-y: auto;
-    height: 18vh;
+    height: 51vh;
     width: 25vw;
     padding: 5px;
     margin: 10px;
@@ -148,7 +179,7 @@
 
   }
   .bookForm{
-    margin-top: 2vh;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -157,7 +188,7 @@
     border-radius: 10px;
     padding: 1vw;
     background-color: rgba(0, 0, 0, 0.048);
-    width:15vw;
+    width: 20vw;
   }
   .bookForm div{
     margin-bottom: 2vh;
@@ -166,16 +197,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 6vw;
-    margin-top: 5px;
-    transition: all 0.3s ease;
-  }
-  .ratingText{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 6vw;
-    
+    width: 100%;
+
   }
   .book{
     border-bottom: 1px solid white;
@@ -247,7 +270,18 @@
   .choosenBookDisplay{
     text-wrap: wrap;
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
-
-
+  .ratingRadioDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   </style>
