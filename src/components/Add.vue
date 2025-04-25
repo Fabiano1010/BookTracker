@@ -12,7 +12,10 @@
                 <h3>{{ book.volumeInfo.title }}</h3>
                 <p v-if="book.volumeInfo.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
                 <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
+                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
@@ -74,6 +77,7 @@
           </div>
         <div class="formBtns">
           <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
+          <button class="btn btnSave" type="submit">Zapisz</button>
           <button class="btn btnSave" type="submit">Zapisz</button>
         </div>
       </form>
@@ -157,13 +161,17 @@
   <style>
   .bookQueryDiv{
     width: 50vw;
+  .bookQueryDiv{
+    width: 50vw;
     display: flex;
+    flex-direction: row;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     
   }
   .booksQuery{
+    margin-top: 0.5vh;
     margin-top: 0.5vh;
     display: flex;
     flex-direction: column;
@@ -184,6 +192,7 @@
   .books{
     overflow-y: auto;
     height: 51vh;
+    height: 51vh;
     width: 25vw;
     padding: 5px;
     margin: 10px;
@@ -195,6 +204,7 @@
   }
   .bookForm{
     margin-top: 1vh;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -203,6 +213,7 @@
     border-radius: 10px;
     padding: 1vw;
     background-color: rgba(0, 0, 0, 0.048);
+    width: 20vw;
     width: 20vw;
   }
   .bookForm div{
