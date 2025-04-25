@@ -8,7 +8,7 @@
           <div class="books">
             <div v-if="loading" class="loading">Ładowanie...</div>
             <div v-else>
-              <div class="book" v-for="book in books" :key="book.id">
+              <div class="book" v-for="book in addedBooks" :key="book.id">
                 <h3>{{ book.volumeInfo.title }}</h3>
                 <p v-if="book.volumeInfo.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
                 <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
@@ -78,7 +78,7 @@
         </div>
       </form>
     </div>
-    <div>
+    <div class="saved">
       {{ saved }}
     </div>
   </template>
@@ -92,7 +92,7 @@
     data() {
       return {
         searchQuery: '',
-        books: [],
+        addedBooks: [],
         loading: false,
         saved: '',
         newBook: {
@@ -105,7 +105,7 @@
             opinion: '' 
         },
         library:{
-          books:[]
+          bookslib:[]
         },
         created() {
           this.loadFromLocalStorage();
@@ -120,7 +120,7 @@
         try {
           
           const response = await booksApi.searchBooks(this.searchQuery);
-          this.books = response.data.items || [];
+          this.addedBooks = response.data.items || [];
         } catch (error) {
           console.error('Błąd podczas wyszukiwania:', error);
         } finally {
@@ -135,15 +135,18 @@
         this.choosenBook = '';
       },
       saveBook(){
-
-        // let book=JSON.stringify(this.newBook);
-        this.library.books.push(this.newBook);
+        const storedData = localStorage.getItem('bookLibrary');
+        if (storedData !== null) {
+          this.library = JSON.parse(storedData);
+        }
+        
+        this.library.bookslib.push(this.newBook);
+        console.log(this.newBook);
         localStorage.setItem('bookLibrary', JSON.stringify(this.library));
         console.log(localStorage.getItem('bookLibrary'))
       
         this.saved ="Zapisano!"
   
-        // localStorage.clear()
       },
    
 
@@ -295,5 +298,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .saved{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-top: 10px;
   }
   </style>
