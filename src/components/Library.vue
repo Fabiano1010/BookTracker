@@ -1,42 +1,82 @@
 <template>
     <div class="title">
         Biblioteka 
-        <button class="btn btnClear" @click="showCleraPopup=!showCleraPopup">Wyczyść</button>
+       
     </div>
+    <div v-if="books.length>0 || error" class="bookCount">Zapisane ksiązki: <b>{{ books.length }}</b>
+      <button class="btn btnClear" @click="showClearPopup=!showClearPopup">Wyczyść</button></div>
+    
       <transition name="fade">
-      <div class="clearPopup" v-if="showCleraPopup"> 
-          <p>Czy na pewno chcesz usunąć CAŁĄ bibliotekę?</p>
-          <div>
-            <button class="btn btnClear" @click="clearLib();">TAK</button>
-            <button class="btn btnSave" @click="showCleraPopup=!showCleraPopup">NIE</button>
+          <div class="clearPopup" v-if="showClearPopup"> 
+              <p>Czy na pewno chcesz usunąć CAŁĄ bibliotekę?</p>
+              <div>
+                <button class="btn btnClear" @click="clearLib();">TAK</button>
+                <button class="btn btnSave" @click="showClearPopup=!showClearPopup">NIE</button>
+              </div>
           </div>
+          </transition>
+          <Transition name="fade">
+            <div v-if="showBookPopup" class="bookPopup">
+        <div class="popupContent">
+          <div class="popupLeft"> 
+            <div class="bookPopupTitle">{{ this.popupTitle }}</div>
+            <div class="bookAuthors">Autorzy:<p>{{ this.popupAuthors.join(', ') }}</p></div>
+            <div class="bookGenry">{{ this.popupGenry }}</div>
+          
+          </div>  
+          <div class="popupRight">
+            <div class="bookIsread" v-if="this.popupIsread">Książka przeczytana</div>
+            <div class="bookIsread" v-else>Książka nie przeczytana</div>
+            <div class="bookTime">Czas czytania <p>{{ this.popupTime }}h</p></div>
+            <div class="bookOpinion">{{ this.popupOpinion }}</div>
+            <div class="bookRating">
+                
+              <div v-for="star in parseInt(this.popupRating )"><img src="../assets/star-full.svg" class="stars"></div>
+              <div v-for="star in (5-parseInt(this.popupRating ))"><img src="../assets/star-empty.svg" class="stars"></div>
+            
+            </div>
+            
+          </div>
+        </div>
+      <div class="bookPopupButtons">
+        <button class="btn btnClear" @click="showBookPopup=!showBookPopup">Zamknij</button>
+        <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Usuń</button>
       </div>
-      </transition>
-        
-        <!-- <button @click="loadBooks" class="btn">Wczytaj biblioteke</button> -->
-        <div class="errors">
+      <div class="clearPopup" v-if="deleteBookPopup"> 
+        <p>Czy na pewno chcesz usunąć książkę?</p>
+        <div>
+          <button class="btn btnClear" @click="deleteBook(this.title, this.bookId)">TAK</button>
+          <button class="btn btnSave" @click="deleteBookPopup=!deleteBookPopup">NIE</button>
+      </div>
+       </div>
+    </div>
+    </Transition>
+
+        <div class="library" >
+          <div class="errors">
             <p v-if="error">{{ error }}</p>
             <p v-if="!error && books.length===0">Brak zapisanych książek</p>
-        </div>
-        <div class="library">
-            <div v-for="(book,index) in books" :key="index" class="book-card-outer">
+            <p v-if="deleted">Usunięto książki</p>
+            
+          </div>
+            <div v-for="(book,index) in books" :key="index" class="book-card-outer" v-if="!deleted">
               <div class="book-card">
-                <!-- <div v-if="!book.authors && book.authors.length > 0" class="author">
-                    Autorzy: {{ book.authors.join(', ') }}
-                </div> -->
-                <div class="book-cover" @click="details()">
+
+                <div class="book-cover" @click="details(book, index)">
                   <div class="bookContent">
                     <div class="bookTitle">
                         {{ book.title }}
+                        
                     </div>
                     <div class="rating" v-if="book.rating" >
-                      <div v-for="star in parseInt(book.rating)"><img src="../assets/star-full.svg" class="stars"></div>
-                      <div v-for="star in (5-parseInt(book.rating))"><img src="../assets/star-empty.svg" class="stars"></div>
-                        <!-- Ocena: {{ book.rating }}/5 -->
+                      <div>Ocena:</div>
+                      <div class="ratingStars">
+                        <div v-for="star in parseInt(book.rating)"><img src="../assets/star-full.svg" class="stars"></div>
+                        <div v-for="star in (5-parseInt(book.rating))"><img src="../assets/star-empty.svg" class="stars"></div>
+                      </div>
                     </div>
                   </div>
-                  <!-- <div class="effect">
-                  </div> -->
+
                 </div>
                 <div class="light"></div>
                 <div class="book-inside">
@@ -44,15 +84,11 @@
                 </div>
 
               </div>
-
-                <div class="buttonDiv">
-                    <button class="btn libBtn" @click="details()">Szczegóły</button>
-                    <button class="btn btnClear libBtn" @click="deleteBook()">Usuń</button>
-                </div>
                 
             </div>
+            
         </div>
-    
+        
 
 </template>
 
@@ -66,7 +102,18 @@ export default {
     return {
       books: [], 
       error: null, 
-      showCleraPopup: false,
+      showClearPopup: false,
+      deleteBookPopup: false,
+      popupTitle:'',
+      popupAuthors: [],
+      popupGenry:'',
+      popupRating:'',
+      popupIsread:'',
+      popupOpinion:'',
+      popupTime: '',
+      showBookPopup: false,
+      deleted: false,
+      bookId:'',
     }
   },
   methods: {
@@ -100,13 +147,82 @@ export default {
         this.books = [];
       }
     },
-    deleteBook(){
+    deleteBook(bookTitle, bookId){
+      const storedData = localStorage.getItem('bookLibrary');
+      console.log(storedData)
+      const library = JSON.parse(storedData);
+      
+      this.books.splice(bookId, 1)
+      
+      library.bookslib=this.books;
+      // console.log(JSON.stringify(library))
+      localStorage.setItem('bookLibrary',JSON.stringify(library));
+      
+      this.deleteBookPopup=!this.deleteBookPopup
+      this.showBookPopup=!this.showBookPopup
+      
+    },
+    edit(){
 
     },
-    details(){
+
+    details(book, index){
+      
+      this.popupTitle=book.title;
+     
+      this.popupAuthors=book.authors;
+      this.bookId=index;
+      switch(book.genry) {
+        case "crime":
+          this.popupGenry="Kryminał";
+          break;
+        case "fantasy":
+          this.popupGenry="Fantasy";
+          break;
+        case "scify":
+          this.popupGenry="Scify";
+          break;
+        case "romance":
+          this.popupGenry="Romans";
+          break;
+        case "thriller":
+          this.popupGenry="Thriller";
+          break;
+        case "horror":
+          this.popupGenry="Horror";
+          break;
+        case "fiction":
+          this.popupGenry="Literatura obyczajowa";
+          break;
+        case "biography":
+          this.popupGenry="Biografia";
+          break;
+        case "adventure":
+          this.popupGenry="Przygodowa";
+          break;
+        case "travel":
+          this.popupGenry="Podróżnicza";
+          break;
+        case "nonfiction":
+          this.popupGenry="Lieratura faktu";
+          break;
+        default:
+          this.popupGenry="Gatunek niedopasowany";
+          break;
+      }
+
+      this.popupRating=book.rating;
+      book.isread ? this.popupIsread=true : this.popupIsread=false;
+
+      this.popupOpinion=book.opinion;
+      this.popupTime=book.time;
+      this.showBookPopup=true;
       
     },
     clearLib(){
+      localStorage.clear();
+      this.showClearPopup=!this.showClearPopup
+      this.deleted=true;
 
     }
   },
@@ -119,6 +235,89 @@ export default {
 </script>
 
 <style>
+.bookCount{
+  size: 1.1rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bookCount button{
+  margin-left: 20px;
+}
+.bookPopupButtons{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.bookPopupButtons button{
+  font-size: 1.1rem;
+}
+.popupContent{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 75%;
+}
+.popupLeft, .popupRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 10px;
+}
+.popupRight{
+  text-align: right;
+  align-items: flex-end;
+}
+.popupLeft{
+  text-align: left;
+  align-items: flex-start;
+}
+.bookPopupTitle{
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-wrap: wrap;
+}
+.bookAuthors{
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  text-wrap: wrap;
+  
+}
+.bookGenry{
+  font-size: 1.25rem;
+}
+.bookTime{
+  font-size: 1.4rem;
+}
+
+.bookRating{
+  display: flex;
+  flex-direction: row;
+}
+.bookRating img{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.bookIsread{
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-wrap: wrap;
+  text-align: right;
+  text-decoration: underline;
+}
+.bookOpinion{
+  text-align: justify;
+  overflow: auto;
+  width: 95%;
+  height: 60%;
+}
 .clearPopup{
   display: flex;
   justify-content: center;
@@ -145,12 +344,26 @@ export default {
   flex-direction: row;
 
 }
+.clearPopup p{
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  
+}
 .clearPopup button{
   border: 1px solid white;
   margin-right: 10px;
 }
-  .rating{
+.rating{
     font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: left;
+  }
+  .ratingStars{
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -161,6 +374,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-right: 10px;
 }
 .title{
     display: flex;
@@ -189,19 +403,20 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    margin-top: 2vh;
+  
 }
 .library{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-around;
-    height: 75vh;
-    width: 90vw;
+    height: 66vh;
+    width: 95vw;
     align-items: center;
     overflow-x: auto;
-    padding: 0.5vh 3vw 2.5vh 3vw;
+    padding: 0 3vw 9vh 3vw;
     z-index: 0;
+    margin-bottom: 1vh;
 }
 
 .libBtn{
@@ -213,14 +428,12 @@ export default {
     justify-content: space-around;
 }
 
-a {
-  text-decoration: none;
-}
+
 
 
 .book-card {
-  width: 8vw;
-  height: 20vh;
+  width: 130px;
+  height: 160px;
   position:relative;
   text-align: center;
   margin:2.5%;
@@ -318,11 +531,79 @@ a {
   inset -8px 0 0 white,
   inset -9px 0 0 #dbdbdb;
 }
-
- 
-
 .book-card:hover .btn, .book-card:hover .bookTitle {
   opacity: 1;
 }
+.bookPopup{
+	
+	background: url("https://i.imgur.com/0kjMcUe.png");
+	background-size: 1000px;
+	background-position: center right;
+	padding: 30px 80px 50px 80px;
+	z-index: 1002;
+	filter: brightness(0.95) sepia(30%) saturate(80%);
+	border-radius: 30px;
+	
+	clip-path: polygon(
+		0% 0%,
+		0% 93%,
+		5% 98%,
+		6% 99%,
+		8% 95%,
+		12% 94%,
+		15% 97%,
+		17% 93%,
+		20% 98%,
+		22% 97%,
+		25% 99%,
+		31% 94%,
+		35% 93%,
+		39% 96%,
+		43% 93%,
+		45% 94%,
+		47% 95%,
+		50% 92%,
+		52% 96%,
+		54% 93%,
+		58% 92%,
+		60% 95%,
+		62% 93%,
+		65% 96%,
+		69% 93%,
+		72% 93%,
+		75% 94%,
+		79% 97%,
+		81% 94%,
+		85% 93%,
+		88% 92%,
+		90% 95%,
+		93% 93%,
+		95% 92%,
+		97% 95%,
+		100% 97%,
+		100% 0%
+	);
+	overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  width: 60vw;
+  height: 70vh;
+  margin: auto;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.722);
+  margin-top: 10px;
+  text-align: center;
+  position: fixed;
+  /* top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #000;
+}
+
 
 </style>

@@ -2,7 +2,10 @@
 
 </script>
 <template>
-
+    <div class="title">
+        Dodaj książke 
+        
+    </div>
     <div class="bookQueryDiv">
         <div  class="booksQuery">
           <input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" >       
@@ -12,8 +15,8 @@
               <div class="book" v-for="book in addedBooks" :key="book.id">
                 <h3>{{ book.volumeInfo.title }}</h3>
                 <p v-if="book.volumeInfo.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
-                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
-                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
+                
+                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors ? book.volumeInfo.authors : ['Autor nie znany'])">Wybierz</button>
               </div>
             </div>
           </div>  
@@ -49,7 +52,7 @@
                   <span>4</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="newBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="newBook.rating" required>
                   <span>5</span>
                 </div>
               </div>
@@ -105,7 +108,7 @@
         newBook: {
             title: '',
             authors: '',
-            isread:'false',
+            isread: false,
             time: '',
             rating: '',
             genry: '',
@@ -136,7 +139,10 @@
       },
       addBook(book, authors){
         this.newBook.title = book;
+    
         this.newBook.authors = authors;
+        console.log( this.newBook.authors)
+        
       },
       clearbook(){
         this.choosenBook = '';
@@ -160,9 +166,9 @@
         }
         
         this.library.bookslib.push(this.newBook);
-        console.log(this.newBook);
+    
         localStorage.setItem('bookLibrary', JSON.stringify(this.library));
-        console.log(localStorage.getItem('bookLibrary'))
+        console.log(JSON.stringify(this.library))
         this.showAlert=true;
         this.saved ="Zapisano!"
         this.timeoutId = setTimeout(() => {
