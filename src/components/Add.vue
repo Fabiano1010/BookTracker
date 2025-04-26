@@ -2,6 +2,7 @@
 
 </script>
 <template>
+
     <div class="bookQueryDiv">
         <div  class="booksQuery">
           <input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" >       
@@ -15,10 +16,9 @@
                 <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors)">Wybierz</button>
               </div>
             </div>
-          </div>
-            </div>
-          </div>
+          </div>  
         </div>
+      
       
         <form action="" class="bookForm" @submit.prevent="saveBook">
           <div class="choosenBookDisplay" id="choosenBookDisplay">{{ newBook.title }}</div>
@@ -78,13 +78,14 @@
         <div class="formBtns">
           <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
           <button class="btn btnSave" type="submit">Zapisz</button>
-          <button class="btn btnSave" type="submit">Zapisz</button>
         </div>
       </form>
     </div>
-    <div class="saved">
-      {{ saved }}
-    </div>
+    <transition name="fade">
+      <div class="saved" v-if="showAlert">
+        {{ saved }}
+      </div>
+    </transition>
   </template>
   
   <script>
@@ -99,6 +100,8 @@
         addedBooks: [],
         loading: false,
         saved: '',
+        showAlert: false,
+        timeoutId: null,
         newBook: {
             title: '',
             authors: '',
@@ -139,6 +142,18 @@
         this.choosenBook = '';
       },
       saveBook(){
+        if (this.timeoutId) {
+          clearTimeout(this.timeoutId);
+        }
+        if(!this.newBook.title){
+          this.showAlert=true;
+          this.saved="Dodaj ksiażkę!"
+          this.timeoutId = setTimeout(() => {
+            this.showAlert = false;
+          }, 3000);
+          return;
+        }
+        
         const storedData = localStorage.getItem('bookLibrary');
         if (storedData !== null) {
           this.library = JSON.parse(storedData);
@@ -148,9 +163,12 @@
         console.log(this.newBook);
         localStorage.setItem('bookLibrary', JSON.stringify(this.library));
         console.log(localStorage.getItem('bookLibrary'))
-      
+        this.showAlert=true;
         this.saved ="Zapisano!"
-  
+        this.timeoutId = setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+        
       },
    
 
@@ -161,6 +179,7 @@
   <style>
   .bookQueryDiv{
     width: 50vw;
+  }
   .bookQueryDiv{
     width: 50vw;
     display: flex;
@@ -319,5 +338,12 @@
     font-weight: 600;
     letter-spacing: 4px;
     margin-top: 10px;
+    transition: 0.3s ease-in-out;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
   </style>
