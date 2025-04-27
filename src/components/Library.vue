@@ -1,95 +1,106 @@
 <template>
+  <!-- titile secton -->
     <div class="title">
         Biblioteka 
-       
     </div>
     <div v-if="books.length>0 || error" class="bookCount">Zapisane ksiązki: <b>{{ books.length }}</b>
-      <button class="btn btnClear" @click="showClearPopup=!showClearPopup">Wyczyść</button></div>
-    
-      <transition name="fade">
-          <div class="clearPopup" v-if="showClearPopup"> 
-              <p>Czy na pewno chcesz usunąć CAŁĄ bibliotekę?</p>
-              <div>
-                <button class="btn btnClear" @click="clearLib();">TAK</button>
-                <button class="btn btnSave" @click="showClearPopup=!showClearPopup">NIE</button>
-              </div>
+      <button class="btn btnClear" @click="showClearPopup=!showClearPopup">Wyczyść</button>
+    </div>
+    <!-- popup section -->
+     <!-- clear library popup -->
+    <transition name="fade">
+      <div class="clearPopup" v-if="showClearPopup"> 
+          <p>Czy na pewno chcesz usunąć CAŁĄ bibliotekę?</p>
+          <div>
+            <button class="btn btnClear" @click="clearLib();">TAK</button>
+            <button class="btn btnSave" @click="showClearPopup=!showClearPopup">NIE</button>
           </div>
-          </transition>
-          <Transition name="fade">
-            <div v-if="showBookPopup" class="bookPopup">
+      </div>
+    </transition>
+    <!-- book popup -->
+    <Transition name="fade">
+      <div v-if="showBookPopup" class="bookPopup">
         <div class="popupContent">
           <div class="popupLeft"> 
-            <div class="bookPopupTitle">{{ this.popupTitle }}</div>
-            <div class="bookAuthors">Autorzy:<p>{{ this.popupAuthors.join(', ') }}</p></div>
-            <div class="bookGenry">{{ this.popupGenry }}</div>
-          
+            <div class="bookPopupTitle">
+              {{ this.popupTitle }}
+            </div>
+            <div class="bookAuthors">
+              Autorzy:<p>{{ this.popupAuthors.join(', ') }}</p>
+            </div>
+            <div class="bookGenry">
+              {{ this.popupGenry }}
+            </div>  
           </div>  
           <div class="popupRight">
-            <div class="bookIsread" v-if="this.popupIsread">Książka przeczytana</div>
-            <div class="bookIsread" v-else>Książka nie przeczytana</div>
-            <div class="bookTime">Czas czytania <p>{{ this.popupTime }}h</p></div>
-            <div class="bookOpinion">{{ this.popupOpinion }}</div>
+            <div class="bookIsread" v-if="this.popupIsread">
+              Książka przeczytana
+            </div>
+            <div class="bookIsread" v-else>
+              Książka nie przeczytana
+            </div>
+            <div class="bookTime">
+              Czas czytania <p>{{ this.popupTime }}h</p>
+            </div>
+            <div class="bookOpinion">
+              {{ this.popupOpinion }}
+            </div>
             <div class="bookRating">
-                
               <div v-for="star in parseInt(this.popupRating )"><img src="../assets/star-full.svg" class="stars"></div>
               <div v-for="star in (5-parseInt(this.popupRating ))"><img src="../assets/star-empty.svg" class="stars"></div>
-            
             </div>
-            
           </div>
         </div>
       <div class="bookPopupButtons">
         <button class="btn btnClear" @click="showBookPopup=!showBookPopup">Zamknij</button>
+        <button class="btn btnSave" @click="showEditPopup=!showEditPopup">Edytuj</button>
         <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Usuń</button>
       </div>
+      <!-- book delete popup -->
       <div class="clearPopup" v-if="deleteBookPopup"> 
         <p>Czy na pewno chcesz usunąć książkę?</p>
         <div>
           <button class="btn btnClear" @click="deleteBook(this.title, this.bookId)">TAK</button>
           <button class="btn btnSave" @click="deleteBookPopup=!deleteBookPopup">NIE</button>
-      </div>
-       </div>
-    </div>
-    </Transition>
-
-        <div class="library" >
-          <div class="errors">
-            <p v-if="error">{{ error }}</p>
-            <p v-if="!error && books.length===0">Brak zapisanych książek</p>
-            <p v-if="deleted">Usunięto książki</p>
-            
-          </div>
-            <div v-for="(book,index) in books" :key="index" class="book-card-outer" v-if="!deleted">
-              <div class="book-card">
-
-                <div class="book-cover" @click="details(book, index)">
-                  <div class="bookContent">
-                    <div class="bookTitle">
-                        {{ book.title }}
-                        
-                    </div>
-                    <div class="rating" v-if="book.rating" >
-                      <div>Ocena:</div>
-                      <div class="ratingStars">
-                        <div v-for="star in parseInt(book.rating)"><img src="../assets/star-full.svg" class="stars"></div>
-                        <div v-for="star in (5-parseInt(book.rating))"><img src="../assets/star-empty.svg" class="stars"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="light"></div>
-                <div class="book-inside">
-                  
-                </div>
-
-              </div>
-                
-            </div>
-            
         </div>
-        
-
+       </div>
+      </div>
+    </Transition>
+    <!-- div to show books section -->
+    <div class="library" >
+      <!-- error show section -->
+      <div class="errors">
+        <p v-if="error">{{ error }}</p>
+        <p v-if="!error && books.length===0">Brak zapisanych książek</p>
+        <p v-if="deleted">Usunięto książki</p>  
+      </div>
+      <!-- loop for book display -->
+      <div v-for="(book,index) in books" :key="index" class="book-card-outer" v-if="!deleted">
+        <div class="book-card">
+          <div class="book-cover" @click="details(book, index)">
+            <div class="bookContent">
+              <div class="bookTitle">
+                  {{ book.title }}        
+              </div>
+              <div class="rating" v-if="book.rating" >
+                <div>Ocena:</div>
+                <div class="ratingStars">
+                  <div v-for="star in parseInt(book.rating)">
+                    <img src="../assets/star-full.svg" class="stars">
+                  </div>
+                  <div v-for="star in (5-parseInt(book.rating))">
+                    <img src="../assets/star-empty.svg" class="stars">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="light"></div>
+          <div class="book-inside"></div>
+        </div>        
+      </div>     
+    </div>
+  
 </template>
 
 <script>
@@ -114,6 +125,7 @@ export default {
       showBookPopup: false,
       deleted: false,
       bookId:'',
+      showEditPopup: false,
     }
   },
   methods: {
