@@ -57,6 +57,7 @@
         <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Usuń</button>
       </div>
       <!-- book delete popup -->
+      <transition name="fade">
       <div class="clearPopup" v-if="deleteBookPopup"> 
         <p>Czy na pewno chcesz usunąć książkę?</p>
         <div>
@@ -64,6 +65,71 @@
           <button class="btn btnSave" @click="deleteBookPopup=!deleteBookPopup">NIE</button>
         </div>
        </div>
+      </transition>
+       <transition name="fade">
+       <div class="bookEditPopup" v-if="showEditPopup">
+        <form action="">
+          
+          <div><input type="checkbox" name="isRead" id="isRead" v-model="this.popupIsread"> przeczytana</div>
+          <div>
+            <label for="readingTime">Czas czytania:</label><br>
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="this.popupTime"> h
+          </div>
+          <div>
+            <label for="rating">Ocena:</label>
+              <div class="ratingRadio">
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="this.popupRating" required>
+                  <span>1</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="this.popupRating" required>
+                  <span>2</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="this.popupRating" required>
+                  <span>3</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="this.popupRating" required>
+                  <span>4</span>
+                </div>
+                <div class="ratingRadioDiv">
+                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="this.popupRating" required>
+                  <span>5</span>
+                </div>
+              </div>
+            </div>
+            <div class="selectDiv">
+            <label for="genry">Najlepiej pasujący gatunek: </label>
+            <select name="genry" id="genry" v-model="this.popupGenry" required>
+              <option value="none">--wybierz gatunek--</option>
+              <option value="crime">Kryminał</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="scify">Scify</option>
+              <option value="romance">Romans</option>
+              <option value="thriller">Thriller</option>
+              <option value="horror">Horror</option>
+              <option value="fiction">Literatura obyczajowa</option>
+              <option value="biography">Biografia</option>
+              <option value="adventure">Przygodowe</option>
+              <option value="travel">Podróżnicze</option>
+              <option value="nonfiction">Lieratura faktu</option>
+
+            </select>
+          </div>
+          <div>
+            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="this.popupOpinion" ></textarea>
+          </div>
+          <div class="editPopupButtons">
+            <button class="btn btnSave" >Zapisz</button>
+            <button class="btn " type="reset">Wyczyść</button>
+            <button class="btn btnClear" @click="showEditPopup=!showEditPopup" type="reset">Anuluj</button>
+          </div>
+
+        </form>
+       </div>
+      </transition>
       </div>
     </Transition>
     <!-- div to show books section -->
@@ -126,33 +192,30 @@ export default {
       deleted: false,
       bookId:'',
       showEditPopup: false,
+      editBook: {
+        genry:'',
+        rating:'',
+        isread:'',
+        opinion:'',
+        time: '',
+      }
     }
   },
   methods: {
     loadBooks() {
       try {
-        
         const storedData = localStorage.getItem('bookLibrary');
-        
-      
         if (!storedData) {
           this.error = 'Brak zapisanych książek w bibliotece';
           this.books = [];
           return;
         }
-        
-
         const library = JSON.parse(storedData);
-        
-  
         if (!library.bookslib || !Array.isArray(library.bookslib)) {
           throw new Error('Nieprawidłowy format danych książek');
         }
-        
-      
         this.books = library.bookslib;
-        this.error = null;
-        
+        this.error = null;  
       } catch (err) {
         console.error('Błąd wczytywania książek:', err);
         this.error = 'Nie udało się wczytać książek. Sprawdź format danych.';
@@ -161,11 +224,9 @@ export default {
     },
     deleteBook(bookTitle, bookId){
       const storedData = localStorage.getItem('bookLibrary');
-      console.log(storedData)
+      // console.log(storedData)
       const library = JSON.parse(storedData);
-      
       this.books.splice(bookId, 1)
-      
       library.bookslib=this.books;
       // console.log(JSON.stringify(library))
       localStorage.setItem('bookLibrary',JSON.stringify(library));
@@ -179,9 +240,7 @@ export default {
     },
 
     details(book, index){
-      
       this.popupTitle=book.title;
-     
       this.popupAuthors=book.authors;
       this.bookId=index;
       switch(book.genry) {
@@ -222,27 +281,21 @@ export default {
           this.popupGenry="Gatunek niedopasowany";
           break;
       }
-
       this.popupRating=book.rating;
       book.isread ? this.popupIsread=true : this.popupIsread=false;
-
       this.popupOpinion=book.opinion;
       this.popupTime=book.time;
-      this.showBookPopup=true;
-      
+      this.showBookPopup=true; 
     },
     clearLib(){
       localStorage.clear();
       this.showClearPopup=!this.showClearPopup
       this.deleted=true;
-
     }
   },
-  mounted() {
-    
+  mounted() { 
     this.loadBooks();
   }
-
 }
 </script>
 
@@ -616,6 +669,25 @@ export default {
   transform: translate(-50%, 0);
   color: #000;
 }
-
+.bookEditPopup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  width: 40vw;
+  height: 55vh;
+  margin: auto;
+  border-radius: 10px;
+  background:linear-gradient(rgba(0, 0, 0, 0.718), rgba(0, 0, 0, 0.953)) ;
+  margin-top: 10px;
+  text-align: center;
+  position: fixed;
+  /* top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 0);
+}
 
 </style>

@@ -30,7 +30,7 @@
           <div><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> przeczytana</div>
           <div>
             <label for="readingTime">Czas czytania:</label><br>
-            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="newBook.time"> h
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="newBook.time" required> h
           </div>
           <div>
             <label for="rating">Ocena:</label>
@@ -96,7 +96,7 @@
 
   export default {
     name: 'Add',
-
+    
     data() {
       return {
         searchQuery: '',
@@ -139,7 +139,7 @@
       },
       addBook(book, authors){
         this.newBook.title = book;
-    
+        
         this.newBook.authors = authors;
         console.log( this.newBook.authors)
         
@@ -156,7 +156,7 @@
           this.saved="Dodaj ksiażkę!"
           this.timeoutId = setTimeout(() => {
             this.showAlert = false;
-          }, 3000);
+          }, 2000);
           return;
         }
         
@@ -351,5 +351,9 @@
   }
   .fade-enter, .fade-leave-to {
     opacity: 0;
+  }
+  .fade-enter-from {
+    transform: scale(0.5);
+    transform-origin: top left; /* Powiększanie od lewego górnego rogu */
   }
   </style>
