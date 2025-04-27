@@ -257,11 +257,10 @@ export default {
       this.details(this.books[bookId],bookId);
       this.showEditPopup=false;
       
-      this.editBook.title= ''
-      this.editBook.authors= ''
+ 
       this.editBook.isread= false
       this.editBook.time= ''
-      this.editBook.rating= ''
+      
       this.editBook.genry= ''
       this.editBook.opinion= '' 
         
