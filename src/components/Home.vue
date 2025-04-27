@@ -153,4 +153,17 @@ export default {
         size: 1.2rem;
         text-transform: uppercase;
     }
+    @media only screen and (min-width:480px) and (max-width:900px){
+        .list{
+            margin: auto;
+            width: 60%;
+        }
+
+
+    }
+    @media only screen and (max-width:480px){
+        /* .navigation{
+            margin-bottom: 2vh;
+        } */
+    }
 </style>

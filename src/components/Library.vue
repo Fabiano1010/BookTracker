@@ -468,7 +468,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-right: 10px;
+  margin: 20px;
 }
 .title{
     display: flex;
@@ -502,7 +502,7 @@ export default {
 .library{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     height: 66vh;
     width: 95vw;
@@ -761,5 +761,104 @@ export default {
   background-color: rgba(255, 255, 255, 0.8);
   
 }
+.ratingRadioDiv{
+  width: 90%;
+}
+.bookEditForm{
+    width: 80%;
+  }
+.clearPopup div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.clearPopup div button{
+    margin: 0;
+}
+@media only screen and (min-width:520px) and (max-width:900px){
+  .library{
+    overflow-y: auto;
+  }
+  .bookPopup{
+    width: 90vw;
+    overflow-y: auto;
+  }
+  .bookEditPopup{
+    width: 60vw;
+  }
+  .bookEditForm{
+    width: 80%;
+  }
+  .clearPopup{
+    width: 50vw;
+  }
+  .clearPopup div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+@media only screen and (min-width:520px) and (max-width:650px){
+  .bookPopup{
+    width: 90vw;
+    overflow-y: auto;
+  }
+  .bookEditPopup{
+    width: 70vw;
+  }
+  .bookEditForm{
+    width: 80%;
+  }
+  .clearPopup{
+    width: 50vw;
+  }
+  .clearPopup div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
 
+}
+
+@media only screen and (max-width:520px){
+  .library{
+    overflow-y: auto;
+    height: 60vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .book-card-outer{
+    width: 90%;
+    margin: 0;
+  }
+  .bookPopup{
+    width: 90vw;
+    overflow-y: auto;
+  }
+  .bookEditPopup{
+    width: 70vw;
+  }
+  .bookEditForm{
+    width: 90%;
+  }
+  .clearPopup{
+    width: 70vw;
+  }
+  .clearPopup div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+}
 </style>

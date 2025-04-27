@@ -241,6 +241,26 @@ export default {
   align-items: center;
   justify-content: center;
 }
+@media only screen and (min-width:520px) and (max-width:900px){
+  .stats{
+    overflow-y: auto;
+  }
 
+}
+@media only screen and (max-width:520px){
+  .stats{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-self: center;
+    align-items: center;
+    margin-top: 1vh;
+    height: 70vh;
+  }
+
+  
+  
+}
 
 </style>

@@ -27,8 +27,8 @@
           <div class="choosenBookDisplay" id="choosenBookDisplay">{{ newBook.title }}</div>
           <input type="text" id="choosenBook" name="choosenBook" v-model="newBook.title" hidden>
           <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="newBook.authors" hidden>
-          <div><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> przeczytana</div>
-          <div>
+          <div class="checkboxDiv"><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> przeczytana</div>
+          <div class="readingTimeDiv">
             <label for="readingTime">Czas czytania:</label><br>
             <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="newBook.time" required> h
           </div>
@@ -75,7 +75,7 @@
 
             </select>
           </div>
-          <div>
+          <div class="txtAreaDiv">
             <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="newBook.opinion" ></textarea>
           </div>
         <div class="formBtns">
@@ -359,5 +359,134 @@
   .fade-enter-from {
     transform: scale(0.5);
     transform-origin: top left; /* Powiększanie od lewego górnego rogu */
+  }
+  .ratingRadio{
+    width: 90%;
+  }
+  @media only screen and (min-width:500px) and (max-width:900px){
+
+    .bookQueryDiv{
+      margin: auto;
+      width: 80vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .booksQuery{
+      width: 58%;
+      
+    }
+    .bookForm{
+      width: 38%;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* border: none; */
+      margin-top: 5.6vh;
+      padding-bottom: 5vh;
+    }
+    .books{
+      width: 100%;
+      /* height: 400px; */
+    }
+    .searchInput{
+      margin-right:-70% ;
+      transform: scale(1.3);
+    }
+    .bookForm div{
+      width: 90%;
+      font-size: 1.1rem;
+      
+    }
+    .btn{
+      transform: scale(1.2);
+    }
+    .selectDiv{
+      display: flex;
+      align-items: center;
+
+    }
+    .selectDiv select{
+      transform: scale(1.2);
+      width: 80%;
+    }
+    .readingTimeDiv{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: baseline;
+      flex-wrap: wrap;
+      
+    }
+    .readingTimeDiv input{
+      transform: scale(1.1);
+      
+    }
+    .book button{
+      margin-left: 20%;
+      width: 60%;
+    }
+    .checkboxDiv{
+      display: flex;
+      justify-content: center;
+    }
+    .txtArea{
+      width: 80%;
+      
+    }
+    .txtAreaDiv{
+      width: 80%; 
+      display: flex;
+      justify-content: center;
+    }
+  }
+  @media only screen and (min-width:520px) and (max-width:650px){
+  .formBtns .btn{
+    transform: scale(1.05);
+    
+  }
+  .formBtns .btn:nth-child(1){
+    margin-right: 5px;
+    
+  }
+  .formBtns .btn:nth-child(2){
+    margin-left: 5px;
+    
+  }
+  .formBtns{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  }
+
+  @media only screen and (max-width:520px){
+    .bookQueryDiv{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-y: auto;
+      height: 70vh; 
+      width: 100%;
+    }
+    .searchInput{
+      margin: 15px;
+    }
+    .booksQuery{
+      width: 100%;
+      height: 70%;
+    }
+    .bookForm{
+      width: 84%;
+      padding: 20px;
+    }
+    .books{
+      width: 90%;
+      height: 100%;
+    }
+  
   }
   </style>
