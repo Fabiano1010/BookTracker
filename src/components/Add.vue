@@ -265,9 +265,13 @@
     transition: 0.2s;
     width: 80px;
   }
+
   .btn:hover{
     background-color: rgba(0, 0, 0, 0.692);
     color: rgb(168, 0, 81)
+  }
+  .inputEdit:hover{
+    background-color: rgba(255, 255, 255, 0.7);
   }
   .btnClear:hover{
     background-color: rgba(139, 1, 1, 0.692);

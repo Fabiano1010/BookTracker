@@ -52,7 +52,7 @@
           </div>
         </div>
       <div class="bookPopupButtons">
-        <button class="btn btnClear" @click="showBookPopup=!showBookPopup">Zamknij</button>
+        <button class="btn btnClear" @click="showBookPopup=!showBookPopup; showEditPopup=false">Zamknij</button>
         <button class="btn btnSave" @click="showEditPopup=!showEditPopup">Edytuj</button>
         <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Usuń</button>
       </div>
@@ -66,71 +66,73 @@
         </div>
        </div>
       </transition>
-       <transition name="fade">
-       <div class="bookEditPopup" v-if="showEditPopup">
-        <form action="">
-          
-          <div><input type="checkbox" name="isRead" id="isRead" v-model="this.popupIsread"> przeczytana</div>
+
+      <!-- Eedit book popup -->
+      <transition name="fade">
+        <div class="bookEditPopup" v-if="showEditPopup">
+        <form action=""  class="bookEditForm" @submit.prevent="editBookFunction(this.bookId)">
+          <input type="text" id="choosenBook" name="choosenBook" v-model="editBook.title" hidden>
+          <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="editBook.title" hidden>
+          <div><input type="checkbox" name="isRead" id="isRead" v-model="editBook.isread"> przeczytana</div>
           <div>
             <label for="readingTime">Czas czytania:</label><br>
-            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="this.popupTime"> h
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput inputEdit" min="1" max="500" step="1" v-model="editBook.time"> h
           </div>
           <div>
             <label for="rating">Ocena:</label>
               <div class="ratingRadio">
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="this.popupRating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="editBook.rating" required>
                   <span>1</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="this.popupRating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="editBook.rating" required>
                   <span>2</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="this.popupRating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="editBook.rating" required>
                   <span>3</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="this.popupRating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="editBook.rating" required>
                   <span>4</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="this.popupRating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="editBook.rating" required>
                   <span>5</span>
                 </div>
               </div>
             </div>
             <div class="selectDiv">
-            <label for="genry">Najlepiej pasujący gatunek: </label>
-            <select name="genry" id="genry" v-model="this.popupGenry" required>
-              <option value="none">--wybierz gatunek--</option>
-              <option value="crime">Kryminał</option>
-              <option value="fantasy">Fantasy</option>
-              <option value="scify">Scify</option>
-              <option value="romance">Romans</option>
-              <option value="thriller">Thriller</option>
-              <option value="horror">Horror</option>
-              <option value="fiction">Literatura obyczajowa</option>
-              <option value="biography">Biografia</option>
-              <option value="adventure">Przygodowe</option>
-              <option value="travel">Podróżnicze</option>
-              <option value="nonfiction">Lieratura faktu</option>
-
-            </select>
-          </div>
+              <label for="genry">Najlepiej pasujący gatunek: </label>
+              <select name="genry" id="genry" class="inputEdit" v-model="this.editBook.genry" required>
+                <option value="none">--wybierz gatunek--</option>
+                <option value="crime">Kryminał</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="scify">Scify</option>
+                <option value="romance">Romans</option>
+                <option value="thriller">Thriller</option>
+                <option value="horror">Horror</option>
+                <option value="fiction">Literatura obyczajowa</option>
+                <option value="biography">Biografia</option>
+                <option value="adventure">Przygodowe</option>
+                <option value="travel">Podróżnicze</option>
+                <option value="nonfiction">Lieratura faktu</option>
+              </select>
+            </div>
           <div>
-            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="this.popupOpinion" ></textarea>
+            <textarea name="opinion" id="opinion" class="txtArea inputEditTxtArea" rows="5" cols="20" placeholder="Opinia" v-model="editBook.opinion" ></textarea>
           </div>
           <div class="editPopupButtons">
-            <button class="btn btnSave" >Zapisz</button>
-            <button class="btn " type="reset">Wyczyść</button>
-            <button class="btn btnClear" @click="showEditPopup=!showEditPopup" type="reset">Anuluj</button>
+            <button class="btn btnSave inputEdit" >Zapisz</button>
+            <button class="btn inputEdit inputEdit" type="reset">Wyczyść</button>
+            <button class="btn btnClear inputEdit" @click="showEditPopup=!showEditPopup" type="reset">Anuluj</button>
           </div>
-
         </form>
-       </div>
-      </transition>
       </div>
+      </transition>
+    </div>
+<!-- end of popup -->
     </Transition>
     <!-- div to show books section -->
     <div class="library" >
@@ -193,12 +195,17 @@ export default {
       bookId:'',
       showEditPopup: false,
       editBook: {
-        genry:'',
-        rating:'',
-        isread:'',
-        opinion:'',
-        time: '',
-      }
+            title: '',
+            authors: '',
+            isread: false,
+            time: '',
+            rating: '',
+            genry: '',
+            opinion: '' 
+        },
+        library:{
+          bookslib:[]
+        },
     }
   },
   methods: {
@@ -234,8 +241,30 @@ export default {
       this.deleteBookPopup=!this.deleteBookPopup
       this.showBookPopup=!this.showBookPopup
       
-    },
-    edit(){
+    },    
+    editBookFunction(bookId){
+      this.editBook.title=this.popupTitle;
+      this.editBook.authors=this.popupAuthors;
+      const storedData = localStorage.getItem('bookLibrary');
+      // console.log(storedData)
+      const library = JSON.parse(storedData);
+      console.log(this.books);
+      this.books[bookId]=this.editBook;
+      library.bookslib=this.books;
+      // console.log(JSON.stringify(library))
+      localStorage.setItem('bookLibrary',JSON.stringify(library));
+      
+      this.details(this.books[bookId],bookId);
+      this.showEditPopup=false;
+      
+      this.editBook.title= ''
+      this.editBook.authors= ''
+      this.editBook.isread= false
+      this.editBook.time= ''
+      this.editBook.rating= ''
+      this.editBook.genry= ''
+      this.editBook.opinion= '' 
+        
 
     },
 
@@ -291,7 +320,8 @@ export default {
       localStorage.clear();
       this.showClearPopup=!this.showClearPopup
       this.deleted=true;
-    }
+    },
+
   },
   mounted() { 
     this.loadBooks();
@@ -688,6 +718,49 @@ export default {
   /* top: 50%; */
   left: 50%;
   transform: translate(-50%, 0);
+}
+.inputEdit{
+  background-color: rgba(255, 255, 255, 0.516);
+  color: #000;
+}
+.bookEditPopup{
+  color: #fff;
+}
+.inputEditTxtArea{
+  background-color: rgba(255, 255, 255, 0.664);
+  color: #000;
+}
+.editPopupButtons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.bookEditForm{
+  margin-top: 1vh;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+   
+    border-radius: 10px;
+    padding: 1vw;
+    
+    width: 20vw;
+    width: 20vw;
+  }
+.bookEditForm div{
+  margin-bottom: 2vh;
+}
+.bookEditForm div select{
+  background-color: rgba(255, 255, 255, 0.664);
+  color: #000;
+}
+.bookEditForm div select:hover{
+  background-color: rgba(255, 255, 255, 0.8);
+  
 }
 
 </style>
