@@ -93,7 +93,7 @@
   
   <script>
   import booksApi from '../services/booksApi';
-
+  import { debounce } from 'lodash';
   export default {
     name: 'Add',
     
@@ -124,19 +124,26 @@
     },
     methods: {
       async searchBooks() {
-        if (this.searchQuery.trim() === '') return;
+        if (!this.searchQuery.trim()) {
+          this.addedBooks = [];
+          return;
+        }
         
         this.loading = true;
+        this.error = null;
+        
         try {
-          
           const response = await booksApi.searchBooks(this.searchQuery);
-          this.addedBooks = response.data.items || [];
-        } catch (error) {
-          console.error('Błąd podczas wyszukiwania:', error);
+          this.addedBooks = response.items || [];
+        } catch (err) {
+          this.error = 'Wystąpił błąd podczas wyszukiwania książek';
+          this.addedBooks = [];
         } finally {
           this.loading = false;
         }
       },
+  
+
       addBook(book, authors){
         this.newBook.title = book;
         
@@ -175,7 +182,10 @@
           this.showAlert = false;
         }, 3000);
         
-      },
+      },  
+      debouncedSearch: debounce(function() {
+      this.searchBooks();
+      }, 500),
    
 
     }

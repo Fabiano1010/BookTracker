@@ -7,22 +7,25 @@
         <div class="statsText">Ulubiony gatunek</div>
         <div class="mostLikedGenryStat statData">{{ this.mostLikedGenry }}</div>
       </div>
+      <div class="averageRead stat">
+        <div class="statsText">Zsumowany czas czytania</div>
+        <div class="sumTimeStat statData">{{ this.sumReadTime }} h</div>
+      </div>
       <div class="bookCounter stat">
         <div class="statsText">Przeczytane</div>
         <div class="averageReadStat statData">{{ this.averageReadBooks }}/{{ this.books.length }}</div>
       </div>
       <div class="averageRating stat">
         <div class="statsText">Średnia ocena</div>
-        <div class="averageRatingStat statData">{{ this.averageRating }}/{{ 5 }}</div>
+        <div class="averageRatingStat statData">{{ this.averageRating }}/{{ 5 }}
+          <canvas id="canvas" width="500" height="500" >cccc</canvas>
+        </div>
       </div>
       <div class="averageTime stat">
         <div class="statsText">Średni czas czytania</div>
         <div class="averageTimeStat statData">{{ this.averageReadTime }}/{{ this.maxReadTime }}</div>
       </div>
-      <div class="averageRead stat">
-        <div class="statsText">Zsumowany czas czytania</div>
-        <div class="sumTimeStat statData">{{ this.sumReadTime }} h</div>
-      </div>
+
       <div class="opinionCount stat">
         <div class="statsText">Napisane opinie</div>
         <div class="opinionCountStat statData">{{ this.opinionCount }}/{{ this.books.length }}</div>
@@ -33,6 +36,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'Statistics',
     data() {

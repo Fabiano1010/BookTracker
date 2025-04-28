@@ -11,7 +11,7 @@
             <li>Wyszukaj ulubione książki</li>
             <li>Oceń i napisz opinie</li>
             <li>Sprawdź ile czytasz</li>
-            <li>Zobacz swoje statyskki</li>
+            <li>Zobacz swoje statystyki</li>
         </ul>
     </div>
     <div class="loopBook">
