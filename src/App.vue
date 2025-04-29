@@ -19,13 +19,13 @@ import { ref } from 'vue'
     </nav>
     
     <div class="content">
-   
+
         
         <!-- <transition mode="out-in"> -->
          <component :is="activeComponent"/>
         <!-- </transition> -->
 
-
+        
     </div>
     <Footer />
   </div>
@@ -39,7 +39,7 @@ import Home from './components/Home.vue'
 import Add from './components/Add.vue'
 import Library from './components/Library.vue'
 import Statistics from './components/Statistics.vue'
-
+import Pr from './components/Pr.vue'
 export default {
   name: 'App',
   components: {
@@ -49,6 +49,7 @@ export default {
     Home,
     Library,
     Statistics,
+    Pr,
   },
   data() {
     return {
