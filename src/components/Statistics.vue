@@ -55,12 +55,10 @@
 </template>
 
 <script>
-import ProgressBar from './ProgressBar.vue';
+
 export default {
     name: 'Statistics',
-    components:{
-      ProgressBar
-    },
+
     data() {
     return {
       books: [], 
@@ -122,7 +120,7 @@ export default {
           propertyName = 'animatedOffsetRating';
           break;
         default:
-          console.error('Nieznany typ progress bara:', progressBarType);
+          console.error('Nieznany typ:', progressBarType);
           return;
       }
     
@@ -315,7 +313,7 @@ export default {
       }
     }
     this.opinionCount=counter
-    console.log(this.opinionCount)
+    
   },
   sumTime(){
     let sum=0;
@@ -437,25 +435,6 @@ export default {
   justify-content: center;
   
 }
-@media only screen and (min-width:520px) and (max-width:900px){
-  .stats{
-    overflow-y: auto;
-  }
-
-}
-@media only screen and (max-width:520px){
-  .stats{
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-self: center;
-    align-items: center;
-    margin-top: 1vh;
-    height: 70vh;
-  }
-}
-
   .statData{
 
     display: flex;
@@ -478,8 +457,8 @@ export default {
     cy: 200px;
     r: 100px;
     stroke-linecap:round;
-    stroke-dasharray: 628; /*100% = 628  */ 
-    stroke-dashoffset: 628; /* new 0% = 471 100% = 157*/
+    stroke-dasharray: 628; 
+    stroke-dashoffset: 628;
     transition: 1.5s ease-in-out;
     filter: drop-shadow(0px 0px 10px rgb(0, 154, 192));
  
@@ -500,12 +479,12 @@ export default {
   }
 
   .ratingCircle{
-    stroke: rgb(192, 0, 58);
-    filter: drop-shadow(0px 0px 10px rgb(192, 0, 58));
-  }
-  .opinionCircle{
     stroke: rgb(192, 179, 0);
     filter: drop-shadow(0px 0px 10px rgb(192, 179, 0));
+  }
+  .opinionCircle{
+    stroke: rgb(192, 0, 58);
+    filter: drop-shadow(0px 0px 10px rgb(192, 0, 58));
   }
   .readCircle{
     stroke: rgb(0, 192, 112);
@@ -550,4 +529,46 @@ export default {
       opacity: 0;
     }
   }
+
+  @media only screen and (min-width:520px) and (max-width:900px){
+  .stats{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    width: 95vw;
+  }
+  .stat{
+    width: 40%;
+    
+  }
+  .statsText{
+    width: 80%;
+  }
+}
+@media only screen and (max-width:520px){
+  .stats{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-self: center;
+    align-items: center;
+    margin-top: 1vh;
+    width: 90vw;
+    height: 70vh;
+    overflow-x: hidden;
+  }
+  .statsText{
+    width: 100%;
+  }
+  .stat{
+    width: 80%;
+  }
+  .mostLikedGenryStat, .sumTimeStat{
+    margin-bottom: 40px;
+  }
+}
 </style>

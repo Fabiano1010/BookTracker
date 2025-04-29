@@ -15,5 +15,7 @@
         font-size: 0.8rem;
         color: gray;
         height: 3vh;
+        position: absolute;
+        bottom: 0;
     }
   </style>

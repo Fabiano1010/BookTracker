@@ -76,29 +76,29 @@
           <div><input type="checkbox" name="isRead" id="isRead" v-model="editBook.isread"> przeczytana</div>
           <div>
             <label for="readingTime">Czas czytania:</label><br>
-            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput inputEdit" min="1" max="500" step="1" v-model="editBook.time"> h
+            <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput inputEdit" min="1" max="500" step="1" v-model="editBook.time" required> h
           </div>
           <div>
             <label for="rating">Ocena:</label>
               <div class="ratingRadio">
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="editBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="this.editBook.rating" required>
                   <span>1</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="editBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="2" v-model="this.editBook.rating" required>
                   <span>2</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="editBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="3" v-model="this.editBook.rating" required>
                   <span>3</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="editBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="4" v-model="this.editBook.rating" required>
                   <span>4</span>
                 </div>
                 <div class="ratingRadioDiv">
-                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="editBook.rating" required>
+                  <input type="radio" name="rating" id="rating" class="rating" value="5" v-model="this.editBook.rating" required>
                   <span>5</span>
                 </div>
               </div>
@@ -150,7 +150,7 @@
               <div class="bookTitle">
                   {{ book.title }}        
               </div>
-              <div class="rating" v-if="book.rating" >
+              <div class="rating" v-if="book.rating!=''" >
                 <div>Ocena:</div>
                 <div class="ratingStars">
                   <div v-for="star in parseInt(book.rating)">
@@ -231,11 +231,11 @@ export default {
     },
     deleteBook(bookTitle, bookId){
       const storedData = localStorage.getItem('bookLibrary');
-      // console.log(storedData)
+      
       const library = JSON.parse(storedData);
       this.books.splice(bookId, 1)
       library.bookslib=this.books;
-      // console.log(JSON.stringify(library))
+      
       localStorage.setItem('bookLibrary',JSON.stringify(library));
       
       this.deleteBookPopup=!this.deleteBookPopup
@@ -246,24 +246,26 @@ export default {
       this.editBook.title=this.popupTitle;
       this.editBook.authors=this.popupAuthors;
       const storedData = localStorage.getItem('bookLibrary');
-      // console.log(storedData)
+      
       const library = JSON.parse(storedData);
-      console.log(this.books);
+      
       this.books[bookId]=this.editBook;
       library.bookslib=this.books;
-      // console.log(JSON.stringify(library))
+      
       localStorage.setItem('bookLibrary',JSON.stringify(library));
       
       this.details(this.books[bookId],bookId);
+
+      // console.log(this.books[bookId].rating)
+
       this.showEditPopup=false;
-      
- 
       this.editBook.isread= false
       this.editBook.time= ''
-      
+      // this.editBook.rating=''
       this.editBook.genry= ''
       this.editBook.opinion= '' 
-        
+
+      // console.log(this.books[bookId].rating)
 
     },
 
@@ -309,6 +311,7 @@ export default {
           this.popupGenry="Gatunek niedopasowany";
           break;
       }
+      
       this.popupRating=book.rating;
       book.isread ? this.popupIsread=true : this.popupIsread=false;
       this.popupOpinion=book.opinion;

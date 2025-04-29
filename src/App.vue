@@ -230,4 +230,22 @@ a {
 
   
 }
+@media only screen and (orientation: landscape){
+  .navigation {
+    display: flex;
+    height: 20vh;
+    width: 190vh;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu{
+    display: flex;
+    height: 12vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+  }
+  }
+
 </style>

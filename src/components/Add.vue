@@ -3,13 +3,12 @@
 </script>
 <template>
     <div class="title">
-        Dodaj książke 
-        
+        Dodaj książkę 
     </div>
     <div class="bookQueryDiv">
         <div  class="booksQuery">
           <div class="glass">
-            <img src="../assets/glass.svg"  alt=""><input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" > 
+            <img src="../assets/glass.svg"  alt="" @click="searchBooks"><input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" > 
           </div>      
           <div class="books">
             <div v-if="loading" class="loading">Ładowanie...</div>
@@ -150,7 +149,7 @@
         this.newBook.title = book;
         
         this.newBook.authors = authors;
-        console.log( this.newBook.authors)
+        
         
       },
       clearbook(){
@@ -177,7 +176,7 @@
         this.library.bookslib.push(this.newBook);
     
         localStorage.setItem('bookLibrary', JSON.stringify(this.library));
-        console.log(JSON.stringify(this.library))
+       
         this.showAlert=true;
         this.saved ="Zapisano!"
         this.timeoutId = setTimeout(() => {
@@ -350,6 +349,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.5rem;
+    margin-top: 5%;
   }
   .saved{
     display: flex;
@@ -370,10 +371,13 @@
   }
   .fade-enter-from {
     transform: scale(0.5);
-    transform-origin: top left; /* Powiększanie od lewego górnego rogu */
+    transform-origin: top left; 
   }
   .ratingRadio{
     width: 90%;
+  }
+  .rating{
+    cursor: pointer;
   }
   @media only screen and (min-width:500px) and (max-width:900px){
 
@@ -507,5 +511,15 @@
   }
   .glass img{
     width: 35px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
   }
+  .glass img:hover{
+    filter: drop-shadow(0 0 20px black);
+    
+  }
+  @media only screen and (orientation: landscape){
+    
+  }
+
   </style>
