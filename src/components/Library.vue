@@ -67,7 +67,7 @@
        </div>
       </transition>
 
-      <!-- Eedit book popup -->
+      <!-- Edit book popup -->
       <transition name="fade">
         <div class="bookEditPopup" v-if="showEditPopup">
         <form action=""  class="bookEditForm" @submit.prevent="editBookFunction(this.bookId)">
@@ -503,7 +503,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     height: 66vh;
     width: 95vw;
     align-items: center;

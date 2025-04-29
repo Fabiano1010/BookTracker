@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     animateProgress(targetPercent, progressBarType) {
-      // Anuluj istniejącą animację dla tego typu
+
       if (this.animationFrameIds[progressBarType]) {
         cancelAnimationFrame(this.animationFrameIds[progressBarType]);
       }
@@ -407,12 +407,6 @@ export default {
 
     this. countStatCircles();
   },
-  // beforeDestroy() {
-      
-  //     if (this.animationFrameId) {
-  //       cancelAnimationFrame(this.animationFrameId);
-  //     }
-  //   },
 
 }
 
@@ -432,7 +426,7 @@ export default {
   margin-top: 10px;
 }
 .statsText{
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   text-align: center;
 }
@@ -445,6 +439,7 @@ export default {
   text-align: center;
   align-items: center;
   justify-content: center;
+  
 }
 @media only screen and (min-width:520px) and (max-width:900px){
   .stats{
@@ -507,9 +502,7 @@ export default {
     font-size: 1.5rem;
     margin-top: 15px;
   }
-  .realStat{
 
-  }
   .ratingCircle{
     stroke: rgb(192, 0, 58);
     filter: drop-shadow(0px 0px 10px rgb(192, 0, 58));
@@ -521,5 +514,13 @@ export default {
   .readCircle{
     stroke: rgb(0, 192, 112);
     filter: drop-shadow(0px 0px 10px rgb(0, 192, 112));
+  }
+  .sumTimeStat{
+    margin-top: 15%;
+    font-size: 3rem;
+  }
+  .mostLikedGenryStat{
+    margin-top: 15%;
+    font-size: 2rem;
   }
 </style>
