@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     animateProgress(targetPercent, progressBarType) {
-
+      // Anuluj istniejącą animację dla tego typu
       if (this.animationFrameIds[progressBarType]) {
         cancelAnimationFrame(this.animationFrameIds[progressBarType]);
       }
@@ -395,6 +395,7 @@ export default {
     this.sumTime();
     this.countStat();
   },
+  
 
     
 },
@@ -406,6 +407,12 @@ export default {
 
     this. countStatCircles();
   },
+  // beforeDestroy() {
+      
+  //     if (this.animationFrameId) {
+  //       cancelAnimationFrame(this.animationFrameId);
+  //     }
+  //   },
 
 }
 
