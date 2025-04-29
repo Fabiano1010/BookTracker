@@ -9,7 +9,7 @@
       </div>
       <div class="averageRead stat">
         <div class="statsText">Zsumowany czas czytania</div>
-        <div class="sumTimeStat statData">{{ this.displaySumReadTime }} h</div>
+        <div class="sumTimeStat statData">{{ !this.displaySumReadTime? 0 : this.displaySumReadTime }} h</div>
       </div>
       <div class="bookCounter stat">
         <div class="statsText">Przeczytane</div>
@@ -149,17 +149,17 @@ export default {
 
 
   animateProgressReadTime(targetPrecent){
-      this.animateProgress(targetPrecent, 'read');
-    },
-    animateProgressAvgReadBooks(targetPrecent){
-      this.animateProgress(targetPrecent, 'book');
-    },
-    animateProgressAvgRating(targetPrecent){
-      this.animateProgress(targetPrecent,'rating');
-    },
-    animateProgressOpinionCount(targetPrecent){
-      this.animateProgress(targetPrecent, 'opinion');
+    this.animateProgress(targetPrecent, 'read');
   },
+  animateProgressAvgReadBooks(targetPrecent){
+    this.animateProgress(targetPrecent, 'book');
+  },
+  animateProgressAvgRating(targetPrecent){
+    this.animateProgress(targetPrecent,'rating');
+  },
+  animateProgressOpinionCount(targetPrecent){
+    this.animateProgress(targetPrecent, 'opinion');
+},
 
   countStatCircles(){
     const targetPercentAvgReadTime = (this.averageReadTime/this.maxReadTime*100)
@@ -328,16 +328,12 @@ export default {
     
     
   },
-
-    
-
   countStat(){
     let tempRead = this.averageReadBooks
     let tempTime = this.averageReadTime
     let tempRating = (this.averageRating*10)
     let tempOpinion = this.opinionCount
     let tempsumReadTime = this.sumReadTime;
-
 
     this.displayAverageReadTime = 0;
     this.displayAverageRating = 0.0;
@@ -383,7 +379,7 @@ export default {
       }else{
         this.displaySumReadTime++;
       }
-    }, 10)
+    }, 1)
   },
   creatStats() {
     this.opinionCounter();
@@ -518,9 +514,40 @@ export default {
   .sumTimeStat{
     margin-top: 15%;
     font-size: 3rem;
+    animation: forwards colors 2s;
   }
   .mostLikedGenryStat{
     margin-top: 15%;
-    font-size: 2rem;
+    font-size: 0.5rem;
+    animation: forwards showGen 1s;
+    opacity: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    
+  }
+  @keyframes showGen {
+    100%{
+      opacity: 1;
+      font-size: 2.2rem;
+      color: rgb(255, 196, 0);
+    }
+  }
+  @keyframes colors {
+    100%{
+      color: rgb(30, 255, 0);
+    }
+    75%{
+      color: rgb(200, 255, 0);
+    }
+    50%{
+      color: rgb(255, 196, 0);
+    }
+    25%{
+      color: rgb(255, 0, 0);
+      opacity: 1;
+    }
+    0%{
+      opacity: 0;
+    }
   }
 </style>

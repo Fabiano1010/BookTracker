@@ -15,9 +15,10 @@
         </ul>
     </div>
     <div class="loopBook">
-    <!-- <transition name="fade">     -->
+    <!-- <transition name="fade">    
         
-        <!-- <div v-if="books"><div class="loopTitle">{{ this.randomBook.title }}</div>
+        <div v-if="books">
+            <div class="loopTitle">{{ this.randomBook.title }}</div>
             
             <div class="ratingStars">
                 <div v-for="star in parseInt(this.randomBook.rating)">
@@ -25,14 +26,14 @@
                 </div>
                 <div v-for="star in (5-parseInt(this.randomBook.rating))">
                     <img src="../assets/star-empty.svg" class="stars">
-                </div>
+                </div> 
             </div>
             <div class="loopOpinion">
-                {{ this.randomBook.opnion }}
+                {{ this.nextBook.opnion }}
             </div>
             
-         </div> -->
-    <!-- </transition> -->
+         </div>
+     </transition> --> 
     </div>
 
 </template>
@@ -44,7 +45,7 @@ export default {
         return {
             books: [], 
             error: null,
-            randomBook:{
+            nextBook:{
                 rating: '',
                 title:'',
                 opnion: ''
@@ -79,28 +80,28 @@ export default {
             
             if(this.books){
                 
-                this.randomBook.title=this.books[next].title
+                this.nextBook.title=this.books[next].title
                 if(!this.books[next].opnion){
-                    this.randomBook.opnion="Brak opinii"
+                    this.nextBook.opnion="Brak opinii"
                 }else{
-                    this.randomBook.opnion=this.books[next].opnion
+                    this.nextBook.opnion=this.books[next].opnion
                 }
             
-            this.randomBook.rating=this.books[next].rating
+            this.nextBook.rating=this.books[next].rating
                 setInterval(() => {
                     // console.log(next)
                     next++;
                     if(next==this.books.length) next=0;
-                    this.randomBook.title=this.books[next].title
+                    this.nextBook.title=this.books[next].title
                     if(!this.books[next].opnion){
-                        this.randomBook.opnion="Brak opinii"
+                        this.nextBook.opnion="Brak opinii"
                     }else{
-                        this.randomBook.opnion=this.books[next].opnion
+                        this.nextBook.opnion=this.books[next].opnion
                     }
                   
-                    this.randomBook.rating=this.books[next].rating
+                    this.nextBook.rating=this.books[next].rating
                        
-                }, 10000);
+                }, 1000);
     
             }
         },

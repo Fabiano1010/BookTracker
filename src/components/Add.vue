@@ -8,7 +8,9 @@
     </div>
     <div class="bookQueryDiv">
         <div  class="booksQuery">
-          <input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" >       
+          <div class="glass">
+            <img src="../assets/glass.svg"  alt=""><input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" > 
+          </div>      
           <div class="books">
             <div v-if="loading" class="loading">Ładowanie...</div>
             <div v-else>
@@ -498,5 +500,12 @@
       height: 100%;
     }
   
+  }
+  .glass{
+    display: flex;
+
+  }
+  .glass img{
+    width: 35px;
   }
   </style>
