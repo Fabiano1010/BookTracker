@@ -37,10 +37,6 @@
 
   - Google Books API
 
-  - CSS Transitions (for smooth animations)
-
-  LocalStorage (data persistence)
-
 ### 📌 Demo / Installation
 
     git clone [repo-url]
@@ -103,10 +99,6 @@
 - Vue.js (Composition API)
 
 - Google Books API
-
-- Animacje CSS (płynne przejścia)
-
-- LocalStorage (zachowane dane)
 
 ### 📌 Demo / Instalacja
 
