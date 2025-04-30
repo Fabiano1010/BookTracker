@@ -42,7 +42,7 @@
     git clone [repo-url]
     npm install
     npm run dev
-
+  You also need Google Books API Key, you can add yours in config.js
 ⭐ If you liked the project, leave a star! ⭐
 
 # 📖 O Projekcie
@@ -105,5 +105,5 @@
     git clone [repo-url]
     npm install
     npm run dev
-
+Należy dodać klucz Google Books API w pliku config.js
 ⭐ Daj gwiazdkę, jeśli projekt Ci się podoba! ⭐
