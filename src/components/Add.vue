@@ -306,6 +306,7 @@
     color: white;
     font-size: 1.05rem;
     padding: 5px;
+    width: 90%;
   }
   .selectDiv{
     display: flex;
@@ -336,8 +337,9 @@
   .choosenBookDisplay{
     text-wrap: wrap;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
+    color: rgb(43, 255, 0);
   }
   .ratingRadioDiv{
     display: flex;
@@ -456,8 +458,18 @@
       display: flex;
       justify-content: center;
     }
+    .glass{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+    }
+    .searchInput{
+      margin: 0;
+    }
   }
-  @media only screen and (min-width:520px) and (max-width:650px){
+  @media only screen and (min-width:520px) and (max-width:670px){
   .formBtns .btn{
     transform: scale(1.05);
     
@@ -475,6 +487,17 @@
     display: flex;
     justify-content: space-between;
   }
+  .glass{
+
+  }
+  .searchInput{
+    transform: scale(1);
+  }
+  .bookForm{
+    width: 100%;
+    margin-left: 10px;
+    height: 90%;
+  }
 
   }
 
@@ -485,7 +508,7 @@
       justify-content: flex-start;
       align-items: center;
       overflow-y: auto;
-      height: 70vh; 
+      height: 55vh; 
       width: 100%;
     }
     .searchInput{
@@ -501,7 +524,7 @@
     }
     .books{
       width: 90%;
-      height: 100%;
+      height: 80%;
     }
   
   }
@@ -519,7 +542,53 @@
     
   }
   @media only screen and (orientation: landscape){
+    .bookQueryDiv{
+      flex-direction: row;
+      overflow-y: auto;
+      height: 60vh;
+      padding-bottom: 50px;
+      padding-top: 50px;
+    }
+    .glass{
+      width: 350px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .searchInput{
+      transform: scale(1.1);
+      margin: 0;
+    }
+
+  }
+  @media only screen and (orientation: landscape) and (max-width:1080px){
+    .bookQueryDiv{
+      margin: 0;
+      height: 70vh;
+      width: 90vw;
+      
+      padding-bottom: 600vh;
+      flex-direction: row;
+    }
+    .searchInput{
+      width: 165px;
+    }
+  }
+  @media only screen and (orientation: landscape) and (max-width:920px){
+    .bookQueryDiv{
+      height: 65vh;
+      
+      padding-top: 25px;
+    }
+    .books{
+      width: 300px;
+    }
+    .bookForm{
+      width: 300px;
+      height: 400px;
+      margin-top: 150px;
+      /* padding-top: 1vh; */
+    }
     
   }
-
   </style>

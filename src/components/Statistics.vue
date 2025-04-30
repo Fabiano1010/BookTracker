@@ -7,7 +7,7 @@
         <div class="statsText">Ulubiony gatunek</div>
         <div class="mostLikedGenryStat statData">{{ this.mostLikedGenry }}</div>
       </div>
-      <div class="averageRead stat">
+      <div class="sumRead stat">
         <div class="statsText">Zsumowany czas czytania</div>
         <div class="sumTimeStat statData">{{ !this.displaySumReadTime? 0 : this.displaySumReadTime }} h</div>
       </div>
@@ -416,8 +416,10 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   width: 90vw;
-  height: 80vh;
+  height: 90vh;
   margin-top: 10px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 .statsText{
   font-size: 1.8rem;
@@ -426,24 +428,20 @@ export default {
 }
 .stat{
   width: 28vw;
-  height: 38vh;
+  height: 30vh;
   padding: 5px;
 }
+
 .statData{
   text-align: center;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   justify-content: center;
+  align-items: center;
+  height: 40vh;
   
 }
-  .statData{
-
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    
-  }
   .svgOuter{
     width: 350px;
     height: 350px;
@@ -491,12 +489,12 @@ export default {
     filter: drop-shadow(0px 0px 10px rgb(0, 192, 112));
   }
   .sumTimeStat{
-    margin-top: 15%;
+    margin-top: -15%;
     font-size: 3rem;
     animation: forwards colors 2s;
   }
   .mostLikedGenryStat{
-    margin-top: 15%;
+    margin-top: -15%;
     font-size: 0.5rem;
     animation: forwards showGen 1s;
     opacity: 0;
@@ -541,7 +539,7 @@ export default {
     width: 95vw;
   }
   .stat{
-    width: 40%;
+    width: 48%;
     
   }
   .statsText{
@@ -566,9 +564,34 @@ export default {
   }
   .stat{
     width: 80%;
+    height: 300px;
   }
   .mostLikedGenryStat, .sumTimeStat{
     margin-bottom: 40px;
   }
 }
+@media only screen and (orientation: landscape) and (max-width:1481px) and (max-height:900){
+  .stats{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100vh;
+  }
+  
+  .stat{
+    width: 48%;
+    height: 300px;
+  }
+  .statData{
+    height: 400px;
+  }
+
+} 
+@media only screen and (orientation: landscape) and (max-width:1080px){
+    .stats{
+      overflow-y: auto;
+      height: 90vh;
+    }
+  }
+
 </style>

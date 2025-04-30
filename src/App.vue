@@ -118,7 +118,7 @@ a {
 .nav-logo{
   text-transform: unset;
 }
-.nav-link:hover {
+.nav-link:hover, .nav-link:active {
   color: rgb(168, 0, 81);
   background-color: #2b2b2bdd;
   cursor: pointer;
@@ -180,7 +180,7 @@ a {
   .navigation {
     display: flex;
     flex-wrap: wrap;
-    height: 20vh;
+    height: 40vh;
     width: 90vh;
     align-items: center;
     justify-content: center;
@@ -189,7 +189,7 @@ a {
   .menu{
     display: flex;
     flex-wrap: wrap;
-    height: 20vh;
+    height: 31vh;
     width: 90vw;
     align-items: center;
     justify-content: center;
@@ -230,22 +230,60 @@ a {
 
   
 }
-@media only screen and (orientation: landscape){
-  .navigation {
-    display: flex;
-    height: 20vh;
-    width: 190vh;
-    align-items: center;
-    justify-content: center;
+@media only screen and (orientation: landscape) and (max-width:1000px){
+    .navigation {
+      display: flex;
+      height: 20vh;
+      width: 170vh;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu{
+      display: flex;
+      height: 12vh;
+      width: 100vw;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2vh;
+    }
+    .nav-link{
+      height: 88%;
+    }
+
+  } 
+  @media only screen and (orientation: landscape) and (max-width:1080px){
+    .navigation {
+      display: flex;
+      height: 10vh;
+      width: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu{
+      display: flex;
+      height: 6vh;
+      width: 100vw;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2vh;
+    }
   }
-  .menu{
-    display: flex;
-    height: 12vh;
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2vh;
-  }
+  @media only screen and (orientation: landscape) and (max-width:930px){
+    .navigation {
+      display: flex;
+      height: 12vh;
+      width: 140vh;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu{
+      display: flex;
+      height: 10vh;
+      width: 120vw;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2vh;
+    }
   }
 
 </style>

@@ -525,9 +525,6 @@ export default {
     justify-content: space-around;
 }
 
-
-
-
 .book-card {
   width: 130px;
   height: 160px;
@@ -556,6 +553,7 @@ export default {
     inset 0 -1px 2px #00000080;
   transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out;
+  user-select: none;
 }
 .book-card .book-cover {
   background-size: 100% 100%;
@@ -587,7 +585,7 @@ export default {
 
 .book-card:hover { cursor:pointer; }
 
-.book-card:hover .book-cover {
+.book-card:hover .book-cover,.book-card:active .book-cover {
   transform: perspective(2000px) rotateY(-30deg);
   -webkit-transform: perspective(2000px) rotateY(-30deg);
   transform-style: preserve-3d;
@@ -783,6 +781,7 @@ export default {
 @media only screen and (min-width:520px) and (max-width:900px){
   .library{
     overflow-y: auto;
+    padding: 0;
   }
   .bookPopup{
     width: 90vw;
@@ -805,7 +804,7 @@ export default {
     align-items: center;
   }
 }
-@media only screen and (min-width:520px) and (max-width:650px){
+@media only screen and (min-width:520px) and (max-width:670px){
   .bookPopup{
     width: 90vw;
     overflow-y: auto;
@@ -826,17 +825,29 @@ export default {
     justify-content: space-around;
     align-items: center;
   }
+  .library{
+    padding: 0;
+    height: 80vh;
+
+  }
 
 }
 
 @media only screen and (max-width:520px){
+  .content{
+    margin-top: -30px;
+  }
   .library{
     overflow-y: auto;
-    height: 60vh;
+    height: 300px;
     width: 90vw;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* padding-top: 120px; */
+    /* padding-bottom: 120px; */
+    /* padding-bottom: 10vh; */
   }
   .book-card-outer{
     width: 90%;
@@ -844,10 +855,14 @@ export default {
   }
   .bookPopup{
     width: 90vw;
+    height: 98vh;
     overflow-y: auto;
+    position: absolute;
+    top:0
   }
   .bookEditPopup{
     width: 70vw;
+    height: 80vh;
   }
   .bookEditForm{
     width: 90%;
@@ -863,5 +878,61 @@ export default {
     align-items: center;
   }
   
+}
+@media only screen and (orientation: landscape){
+ .library{
+  padding: 0;
+  width: 90vw;
+ }
+ .btnClear{
+    transform: scale(1.1);
+ }
+ .bookCount{
+  margin-bottom: 10px;
+ }
+ .bookPopup{
+  position: absolute;
+  top:0;
+  height: 90vh;
+  overflow-y: auto;
+ }
+ .bookEditPopup{
+  height: 70vh;
+  position: absolute;
+  top:0
+ }
+ .bookEditForm{
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 90vh;
+  
+ }
+ .btn{
+  transform: scale(0.89);
+ }
+} 
+@media only screen and (orientation: landscape) and (max-width:1080px){
+  .library{
+    height: 75vh;
+    padding-bottom: 5vh;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width:930px){
+  .library{
+    height: 60vh;
+    padding-bottom: 5vh;
+  }
+  .bookEditPopup{
+  height: 80vh;
+  width: 80%;
+  position: absolute;
+  top:0
+ }
+  .bookEditForm{
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100vh;
+  
+ }
 }
 </style>

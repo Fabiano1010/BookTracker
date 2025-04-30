@@ -18,4 +18,11 @@
         position: absolute;
         bottom: 0;
     }
+    
+    @media only screen and (orientation: landscape){
+      .footer{
+        position: absolute;
+        bottom: 5px;
+      }
+    }
   </style>
