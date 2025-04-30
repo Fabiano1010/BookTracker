@@ -60,7 +60,8 @@
   Dodawanie książek z autorem, oceną, czasem czytania, gatunkiem i opinią
 
   Statystyki czytania z progress barami pokazującymi:
-![image](https://github.com/user-attachments/assets/b97b18da-5464-4488-abf4-70f490006b3b)
+![image](https://github.com/user-attachments/assets/85490340-f0ec-4773-8b2f-56503876034a)
+
 
   - Średni czas czytania vs. najdłuższa książka
 
