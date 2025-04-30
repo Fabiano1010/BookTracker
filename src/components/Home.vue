@@ -14,7 +14,7 @@
             <li>Zobacz swoje statystyki</li>
         </ul>
     </div>
-    <div class="loopBook">
+    <!-- <div class="loopBook"> -->
     <!-- <transition name="fade">    
         
         <div v-if="books">
@@ -34,7 +34,7 @@
             
          </div>
      </transition> --> 
-    </div>
+    <!-- </div> -->
 
 </template>
 
@@ -74,43 +74,43 @@ export default {
                 this.books = [];
             }
         },
-        getRandomBook(){
-            let next=0;
+        // getRandomBook(){
+        //     let next=0;
             
             
-            if(this.books){
+        //     if(this.books){
                 
-                this.nextBook.title=this.books[next].title
-                if(!this.books[next].opnion){
-                    this.nextBook.opnion="Brak opinii"
-                }else{
-                    this.nextBook.opnion=this.books[next].opnion
-                }
+        //         this.nextBook.title=this.books[next].title
+        //         if(!this.books[next].opnion){
+        //             this.nextBook.opnion="Brak opinii"
+        //         }else{
+        //             this.nextBook.opnion=this.books[next].opnion
+        //         }
             
-            this.nextBook.rating=this.books[next].rating
-                setInterval(() => {
-                    // console.log(next)
-                    next++;
-                    if(next==this.books.length) next=0;
-                    this.nextBook.title=this.books[next].title
-                    if(!this.books[next].opnion){
-                        this.nextBook.opnion="Brak opinii"
-                    }else{
-                        this.nextBook.opnion=this.books[next].opnion
-                    }
+        //     this.nextBook.rating=this.books[next].rating
+        //         setInterval(() => {
+        //             // console.log(next)
+        //             next++;
+        //             if(next==this.books.length) next=0;
+        //             this.nextBook.title=this.books[next].title
+        //             if(!this.books[next].opnion){
+        //                 this.nextBook.opnion="Brak opinii"
+        //             }else{
+        //                 this.nextBook.opnion=this.books[next].opnion
+        //             }
                   
-                    this.nextBook.rating=this.books[next].rating
+        //             this.nextBook.rating=this.books[next].rating
                        
-                }, 1000);
+        //         }, 1000);
     
-            }
-        },
+        //     }
+        // },
        
 
     },
     mounted() { 
         this.loadBooks();
-        this.getRandomBook();
+        // this.getRandomBook();
   }
 }
 </script>

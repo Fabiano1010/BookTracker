@@ -570,12 +570,13 @@ export default {
     margin-bottom: 40px;
   }
 }
-@media only screen and (orientation: landscape) and (max-width:1481px) and (max-height:900){
+@media only screen and (orientation: landscape) and (max-width:1481px) and (max-height:900px){
   .stats{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100vh;
+    overflow-y: auto;
   }
   
   .stat{

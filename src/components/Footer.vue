@@ -19,7 +19,7 @@
         bottom: 0;
     }
     
-    @media only screen and (orientation: landscape){
+    @media only screen and (orientation: landscape) and (max-width:1000px){
       .footer{
         position: absolute;
         bottom: 5px;
