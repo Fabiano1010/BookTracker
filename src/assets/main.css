@@ -11,7 +11,7 @@ html,body,#app{
 body {
   display: flex;
   place-items: center;
-  background: linear-gradient(135deg,rgb(31, 31, 31), rgb(112, 0, 69));
+  background: linear-gradient(315deg,#001F63, rgb(112, 0, 69));
   background-size: 150% 150%;
   /* animation: gradient 30s ease infinite; */
 }

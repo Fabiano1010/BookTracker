@@ -261,7 +261,7 @@ export default {
       this.showEditPopup=false;
       this.editBook.isread= false
       this.editBook.time= ''
-      // this.editBook.rating=''
+      //this.editBook.rating=0
       this.editBook.genry= ''
       this.editBook.opinion= '' 
 

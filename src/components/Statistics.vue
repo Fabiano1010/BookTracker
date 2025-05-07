@@ -347,7 +347,7 @@ export default {
       }else{
         this.displayAverageReadTime++;
       }
-    }, 150)
+    }, 50)
     setInterval(()=>{
       if(this.displayAverageReadBooks==tempRead){
         clearInterval();
@@ -376,8 +376,17 @@ export default {
         clearInterval();
       }else{
         this.displaySumReadTime++;
+        
       }
-    }, 1)
+    }, 5)
+    setTimeout(() => {
+     
+      this.displaySumReadTime=tempsumReadTime;
+  
+    }, 1500);
+
+    // console.log(tempsumReadTime)
+    
   },
   creatStats() {
     this.opinionCounter();
@@ -388,6 +397,11 @@ export default {
     this.favGenry();
     this.sumTime();
     this.countStat();
+
+     
+    
+   
+
   },
   
 
