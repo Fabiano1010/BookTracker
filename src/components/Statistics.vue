@@ -584,7 +584,7 @@ export default {
     margin-bottom: 40px;
   }
 }
-@media only screen and (orientation: landscape) and (max-width:1481px) and (max-height:900px){
+@media only screen and (orientation: landscape) and (max-width:1481px){
   .stats{
     display: flex;
     flex-direction: row;
@@ -608,5 +608,22 @@ export default {
       height: 90vh;
     }
   }
+@media screen and (max-height:941px) {
+  .stats{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .stat{
+    width: 48%;
+    height: 300px;
+  }
+  .statData{
+    height: 400px;
+  }
+}
+
 
 </style>

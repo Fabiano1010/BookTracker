@@ -272,14 +272,14 @@ a {
     .navigation {
       display: flex;
       height: 12vh;
-      width: 140vh;
+      width: 90vh;
       align-items: center;
       justify-content: center;
     }
     .menu{
       display: flex;
-      height: 10vh;
-      width: 120vw;
+      height: 8vh;
+      width: 90vw;
       align-items: center;
       justify-content: center;
       margin-bottom: 2vh;
