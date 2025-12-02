@@ -122,7 +122,7 @@
             </select>
           </div>
           <div class="txtAreaDiv">
-            <textarea name="opinion" id="opinion" class="txtArea inputEditTxtArea" rows="5" cols="20" placeholder="Opinion" v-model="editBook.opinion" ></textarea>
+            <textarea name="opinion" id="opinion" class="txtArea inputEditTxtArea" rows="5" cols="20" placeholder="Opinion" v-model="editBook.opinion" > </textarea>
           </div>
           <div class="editPopupButtons">
             <button class="btn btnSave inputEdit" >Save</button>
