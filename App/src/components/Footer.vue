@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        I1S 4.5.10 Fabian Skrzypczyński 2025 &copy;
+       Fabian Skrzypczyński 2025 &copy;
     </footer>
   </template>
   
