@@ -1,18 +1,18 @@
 <template>
     <div class="title">
-        Statystyki 
+        Statistics
     </div>
     <div class="stats">
       <div class="mostLikedGenry stat">
-        <div class="statsText">Ulubiony gatunek</div>
+        <div class="statsText">Favourite genry</div>
         <div class="mostLikedGenryStat statData">{{ this.mostLikedGenry }}</div>
       </div>
       <div class="sumRead stat">
-        <div class="statsText">Zsumowany czas czytania</div>
+        <div class="statsText">Reading time</div>
         <div class="sumTimeStat statData">{{ !this.displaySumReadTime? 0 : this.displaySumReadTime }} h</div>
       </div>
       <div class="bookCounter stat">
-        <div class="statsText">Przeczytane</div>
+        <div class="statsText">Finished books</div>
         <div class=" statData">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svgOuter">
             <circle class="svgCircle readCircle" id="readCircle"  :style="{ strokeDashoffset: animatedOffsetBook }"/>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="averageRating stat">
-        <div class="statsText">Średnia ocena</div>
+        <div class="statsText">Average Rating</div>
         <div class=" statData">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svgOuter">
             <circle class="svgCircle ratingCircle" id="ratingCircle"  :style="{ strokeDashoffset: animatedOffsetRating }"/>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="averageTime stat">
-        <div class="statsText">Średni czas czytania</div>
+        <div class="statsText">Average reading time per book</div>
         <div class=" statData">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svgOuter">
             <circle class="svgCircle" id="timeCircle" :style="{ strokeDashoffset: animatedOffsetRead }"/>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="opinionCount stat">
-        <div class="statsText">Napisane opinie</div>
+        <div class="statsText">Number of opinions</div>
         <div class=" statData">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svgOuter">
             <circle class="svgCircle opinionCircle" id="opinionCircle"  :style="{ strokeDashoffset: animatedOffsetOpinion }"/>

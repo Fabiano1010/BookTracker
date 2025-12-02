@@ -1,19 +1,19 @@
 <template>
   <!-- titile secton -->
     <div class="title">
-        Biblioteka 
+        LIBRARY
     </div>
-    <div v-if="books.length>0 || error" class="bookCount">Zapisane ksiązki: <b>{{ books.length }}</b>
-      <button class="btn btnClear" @click="showClearPopup=!showClearPopup">Wyczyść</button>
+    <div v-if="books.length>0 || error" class="bookCount">Saved books: <b>{{ books.length }}</b>
+      <button class="btn btnClear" @click="showClearPopup=!showClearPopup">Clear</button>
     </div>
     <!-- popup section -->
      <!-- clear library popup -->
     <transition name="fade">
       <div class="clearPopup" v-if="showClearPopup"> 
-          <p>Czy na pewno chcesz usunąć CAŁĄ bibliotekę?</p>
+          <p>Are you sure, you want DELETE ALL BOOKS?</p>
           <div>
-            <button class="btn btnClear" @click="clearLib();">TAK</button>
-            <button class="btn btnSave" @click="showClearPopup=!showClearPopup">NIE</button>
+            <button class="btn btnClear" @click="clearLib();">YES</button>
+            <button class="btn btnSave" @click="showClearPopup=!showClearPopup">NO</button>
           </div>
       </div>
     </transition>
@@ -26,7 +26,7 @@
               {{ this.popupTitle }}
             </div>
             <div class="bookAuthors">
-              Autorzy:<p>{{ this.popupAuthors.join(', ') }}</p>
+              Authors:<p>{{ this.popupAuthors.join(', ') }}</p>
             </div>
             <div class="bookGenry">
               {{ this.popupGenry }}
@@ -34,13 +34,13 @@
           </div>  
           <div class="popupRight">
             <div class="bookIsread" v-if="this.popupIsread">
-              Książka przeczytana
+              Book finished
             </div>
             <div class="bookIsread" v-else>
-              Książka nie przeczytana
+              Book not finished
             </div>
             <div class="bookTime">
-              Czas czytania <p>{{ this.popupTime }}h</p>
+              Reading time <p>{{ this.popupTime }}h</p>
             </div>
             <div class="bookOpinion">
               {{ this.popupOpinion }}
@@ -52,17 +52,17 @@
           </div>
         </div>
       <div class="bookPopupButtons">
-        <button class="btn btnClear" @click="showBookPopup=!showBookPopup; showEditPopup=false">Zamknij</button>
-        <button class="btn btnSave" @click="showEditPopup=!showEditPopup">Edytuj</button>
-        <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Usuń</button>
+        <button class="btn btnClear" @click="showBookPopup=!showBookPopup; showEditPopup=false">Close</button>
+        <button class="btn btnSave" @click="showEditPopup=!showEditPopup">Edit</button>
+        <button class="btn btnClear" @click="deleteBookPopup=!deleteBookPopup">Delete</button>
       </div>
       <!-- book delete popup -->
       <transition name="fade">
       <div class="clearPopup" v-if="deleteBookPopup"> 
-        <p>Czy na pewno chcesz usunąć książkę?</p>
+        <p>Are you sure?</p>
         <div>
-          <button class="btn btnClear" @click="deleteBook(this.title, this.bookId)">TAK</button>
-          <button class="btn btnSave" @click="deleteBookPopup=!deleteBookPopup">NIE</button>
+          <button class="btn btnClear" @click="deleteBook(this.title, this.bookId)">YES</button>
+          <button class="btn btnSave" @click="deleteBookPopup=!deleteBookPopup">NO</button>
         </div>
        </div>
       </transition>
@@ -73,13 +73,13 @@
         <form action=""  class="bookEditForm" @submit.prevent="editBookFunction(this.bookId)">
           <input type="text" id="choosenBook" name="choosenBook" v-model="editBook.title" hidden>
           <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="editBook.title" hidden>
-          <div><input type="checkbox" name="isRead" id="isRead" v-model="editBook.isread"> przeczytana</div>
+          <div><input type="checkbox" name="isRead" id="isRead" v-model="editBook.isread"> Finished</div>
           <div>
-            <label for="readingTime">Czas czytania:</label><br>
+            <label for="readingTime">Reding time:</label><br>
             <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput inputEdit" min="1" max="500" step="1" v-model="editBook.time" required> h
           </div>
           <div>
-            <label for="rating">Ocena:</label>
+            <label for="rating">Rating:</label>
               <div class="ratingRadio">
                 <div class="ratingRadioDiv">
                   <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="this.editBook.rating" required>
@@ -103,30 +103,31 @@
                 </div>
               </div>
             </div>
-            <div class="selectDiv">
-              <label for="genry">Najlepiej pasujący gatunek: </label>
-              <select name="genry" id="genry" class="inputEdit" v-model="this.editBook.genry" required>
-                <option value="none">--wybierz gatunek--</option>
-                <option value="crime">Kryminał</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="scify">Scify</option>
-                <option value="romance">Romans</option>
-                <option value="thriller">Thriller</option>
-                <option value="horror">Horror</option>
-                <option value="fiction">Literatura obyczajowa</option>
-                <option value="biography">Biografia</option>
-                <option value="adventure">Przygodowe</option>
-                <option value="travel">Podróżnicze</option>
-                <option value="nonfiction">Lieratura faktu</option>
-              </select>
-            </div>
-          <div>
-            <textarea name="opinion" id="opinion" class="txtArea inputEditTxtArea" rows="5" cols="20" placeholder="Opinia" v-model="editBook.opinion" ></textarea>
+          <div class="selectDiv">
+            <label for="genry">Most suitable genry: </label>
+            <select name="genry" id="genry" v-model="newBook.genry" required>
+              <option value="none">--choose genry--</option>
+              <option value="crime">Crime</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="scify">Scify</option>
+              <option value="romance">Romance</option>
+              <option value="thriller">Thriller</option>
+              <option value="horror">Horror</option>
+              <option value="fiction">Fiction</option>
+              <option value="biography">Biography</option>
+              <option value="adventure">Adventure</option>
+              <option value="travel">Travel</option>
+              <option value="nonfiction">Non-fiction</option>
+
+            </select>
+          </div>
+          <div class="txtAreaDiv">
+            <textarea name="opinion" id="opinion" class="txtArea inputEditTxtArea" rows="5" cols="20" placeholder="Opinion" v-model="editBook.opinion" > </textarea>
           </div>
           <div class="editPopupButtons">
-            <button class="btn btnSave inputEdit" >Zapisz</button>
-            <button class="btn inputEdit inputEdit" type="reset">Wyczyść</button>
-            <button class="btn btnClear inputEdit" @click="showEditPopup=!showEditPopup" type="reset">Anuluj</button>
+            <button class="btn btnSave inputEdit" >Save</button>
+            <button class="btn inputEdit inputEdit" type="reset">Clear</button>
+            <button class="btn btnClear inputEdit" @click="showEditPopup=!showEditPopup" type="reset">Cancel</button>
           </div>
         </form>
       </div>
@@ -139,8 +140,8 @@
       <!-- error show section -->
       <div class="errors">
         <p v-if="error">{{ error }}</p>
-        <p v-if="!error && books.length===0">Brak zapisanych książek</p>
-        <p v-if="deleted">Usunięto książki</p>  
+        <p v-if="!error && books.length===0">No saved books</p>
+        <p v-if="deleted">Books has been deleted</p>
       </div>
       <!-- loop for book display -->
       <div v-for="(book,index) in books" :key="index" class="book-card-outer" v-if="!deleted">
@@ -151,7 +152,7 @@
                   {{ book.title }}        
               </div>
               <div class="rating" v-if="book.rating!=''" >
-                <div>Ocena:</div>
+                <div>Rating:</div>
                 <div class="ratingStars">
                   <div v-for="star in parseInt(book.rating)">
                     <img src="../assets/star-full.svg" class="stars">
@@ -213,19 +214,19 @@ export default {
       try {
         const storedData = localStorage.getItem('bookLibrary');
         if (!storedData) {
-          this.error = 'Brak zapisanych książek w bibliotece';
+          this.error = 'No books in library';
           this.books = [];
           return;
         }
         const library = JSON.parse(storedData);
         if (!library.bookslib || !Array.isArray(library.bookslib)) {
-          throw new Error('Nieprawidłowy format danych książek');
+          throw new Error('Incorrect data format');
         }
         this.books = library.bookslib;
-        this.error = null;  
+        this.error = null;
       } catch (err) {
-        console.error('Błąd wczytywania książek:', err);
-        this.error = 'Nie udało się wczytać książek. Sprawdź format danych.';
+        console.error('Books loading error:', err);
+        this.error = 'Cannot load books, check data format';
         this.books = [];
       }
     },
@@ -275,7 +276,7 @@ export default {
       this.bookId=index;
       switch(book.genry) {
         case "crime":
-          this.popupGenry="Kryminał";
+          this.popupGenry="Crime";
           break;
         case "fantasy":
           this.popupGenry="Fantasy";
@@ -284,7 +285,7 @@ export default {
           this.popupGenry="Scify";
           break;
         case "romance":
-          this.popupGenry="Romans";
+          this.popupGenry="Romance";
           break;
         case "thriller":
           this.popupGenry="Thriller";
@@ -293,22 +294,22 @@ export default {
           this.popupGenry="Horror";
           break;
         case "fiction":
-          this.popupGenry="Literatura obyczajowa";
+          this.popupGenry="Fiction";
           break;
         case "biography":
-          this.popupGenry="Biografia";
+          this.popupGenry="Biography";
           break;
         case "adventure":
-          this.popupGenry="Przygodowa";
+          this.popupGenry="Adventure";
           break;
         case "travel":
-          this.popupGenry="Podróżnicza";
+          this.popupGenry="Travel";
           break;
         case "nonfiction":
-          this.popupGenry="Lieratura faktu";
+          this.popupGenry="Non-fiction";
           break;
         default:
-          this.popupGenry="Gatunek niedopasowany";
+          this.popupGenry="Unknown genry";
           break;
       }
       

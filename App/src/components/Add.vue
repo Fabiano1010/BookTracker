@@ -3,21 +3,21 @@
 </script>
 <template>
     <div class="title">
-        Dodaj książkę 
+        Add book
     </div>
     <div class="bookQueryDiv">
         <div  class="booksQuery">
           <div class="glass">
-            <img src="../assets/glass.svg"  alt="" @click="searchBooks"><input v-model="searchQuery" @input="searchBooks" placeholder="Wyszukaj książki..." class="searchInput" > 
+            <img src="../assets/glass.svg"  alt="" @click="searchBooks"><input v-model="searchQuery" @input="searchBooks" placeholder="Search books..." class="searchInput" >
           </div>      
           <div class="books">
-            <div v-if="loading" class="loading">Ładowanie...</div>
+            <div v-if="loading" class="loading">Loading...</div>
             <div v-else>
               <div class="book" v-for="book in addedBooks" :key="book.id">
                 <h3>{{ book.volumeInfo.title }}</h3>
-                <p v-if="book.volumeInfo.authors">Autor: {{ book.volumeInfo.authors.join(', ') }}</p>
+                <p v-if="book.volumeInfo.authors">Author: {{ book.volumeInfo.authors.join(', ') }}</p>
                 
-                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors ? book.volumeInfo.authors : ['Autor nie znany'])">Wybierz</button>
+                <button class="btn" @click="addBook(book.volumeInfo.title, book.volumeInfo.authors ? book.volumeInfo.authors : ['Unknown Author'])">Choose</button>
               </div>
             </div>
           </div>  
@@ -28,13 +28,13 @@
           <div class="choosenBookDisplay" id="choosenBookDisplay">{{ newBook.title }}</div>
           <input type="text" id="choosenBook" name="choosenBook" v-model="newBook.title" hidden>
           <input type="text" id="choosenBookAuthor" name="choosenBookAuthor" v-model="newBook.authors" hidden>
-          <div class="checkboxDiv"><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> przeczytana</div>
+          <div class="checkboxDiv"><input type="checkbox" name="isRead" id="isRead" v-model="newBook.isread"> Book finished</div>
           <div class="readingTimeDiv">
-            <label for="readingTime">Czas czytania:</label><br>
+            <label for="readingTime">Reading time:</label><br>
             <input type="number" name="readingTime" id="readingTime" placeholder="10" class="timeInput" min="1" max="500" step="1" v-model="newBook.time" required> h
           </div>
           <div>
-            <label for="rating">Ocena:</label>
+            <label for="rating">Rating:</label>
               <div class="ratingRadio">
                 <div class="ratingRadioDiv">
                   <input type="radio" name="rating" id="rating" class="rating" value="1" v-model="newBook.rating" required>
@@ -59,29 +59,29 @@
               </div>
             </div>
           <div class="selectDiv">
-            <label for="genry">Najlepiej pasujący gatunek: </label>
+            <label for="genry">Most suitable genry: </label>
             <select name="genry" id="genry" v-model="newBook.genry" required>
-              <option value="none">--wybierz gatunek--</option>
-              <option value="crime">Kryminał</option>
+              <option value="none">--choose genry--</option>
+              <option value="crime">Crime</option>
               <option value="fantasy">Fantasy</option>
               <option value="scify">Scify</option>
-              <option value="romance">Romans</option>
+              <option value="romance">Romance</option>
               <option value="thriller">Thriller</option>
               <option value="horror">Horror</option>
-              <option value="fiction">Literatura obyczajowa</option>
-              <option value="biography">Biografia</option>
-              <option value="adventure">Przygodowe</option>
-              <option value="travel">Podróżnicze</option>
-              <option value="nonfiction">Lieratura faktu</option>
+              <option value="fiction">Fiction</option>
+              <option value="biography">Biography</option>
+              <option value="adventure">Adventure</option>
+              <option value="travel">Travel</option>
+              <option value="nonfiction">Non-ficion</option>
 
             </select>
           </div>
           <div class="txtAreaDiv">
-            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinia" v-model="newBook.opinion" ></textarea>
+            <textarea name="opinion" id="opinion" class="txtArea" rows="5" cols="20" placeholder="Opinion" v-model="newBook.opinion" ></textarea>
           </div>
         <div class="formBtns">
-          <button class="btn btnClear" type="reset" @click="clearbook()">Wyczyść</button>
-          <button class="btn btnSave" type="submit">Zapisz</button>
+          <button class="btn btnClear" type="reset" @click="clearbook()">Clear</button>
+          <button class="btn btnSave" type="submit">Save</button>
         </div>
       </form>
     </div>
@@ -137,7 +137,7 @@
           const response = await booksApi.searchBooks(this.searchQuery);
           this.addedBooks = response.items || [];
         } catch (err) {
-          this.error = 'Wystąpił błąd podczas wyszukiwania książek';
+          this.error = 'An error occured while searching books.';
           this.addedBooks = [];
         } finally {
           this.loading = false;
@@ -161,7 +161,7 @@
         }
         if(!this.newBook.title){
           this.showAlert=true;
-          this.saved="Dodaj ksiażkę!"
+          this.saved="Add book!"
           this.timeoutId = setTimeout(() => {
             this.showAlert = false;
           }, 2000);
@@ -178,7 +178,7 @@
         localStorage.setItem('bookLibrary', JSON.stringify(this.library));
        
         this.showAlert=true;
-        this.saved ="Zapisano!"
+        this.saved ="Saved!"
         this.timeoutId = setTimeout(() => {
           this.showAlert = false;
         }, 3000);

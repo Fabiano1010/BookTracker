@@ -10,9 +10,9 @@ import { ref } from 'vue'
       <div class="menu">
         <div class="nav-logo"><img class="icon" src="./assets/icon.svg" alt="">BookTracker</div>
         <div class="nav-link" @click="activeComponent = 'Home'" >Home</div>
-        <div class="nav-link" @click="activeComponent = 'Library'" >Biblioteka</div>
-        <div class="nav-link" @click="activeComponent = 'Statistics'">Statystyki</div>
-        <div class="nav-link" @click="activeComponent = 'Add'">Dodaj</div> 
+        <div class="nav-link" @click="activeComponent = 'Library'" >Library</div>
+        <div class="nav-link" @click="activeComponent = 'Statistics'">Statistics</div>
+        <div class="nav-link" @click="activeComponent = 'Add'">Add Book</div>
 
       </div>
      

@@ -1,17 +1,17 @@
 <template>
     <div class="home">
         <h1>
-           Witaj w BookTracker  
+           Welcom to BookTracker
         </h1>
         <img src="../assets/icon.svg" alt="" width="60">
         
     </div>
     <div class="list">
         <ul>
-            <li>Wyszukaj ulubione książki</li>
-            <li>Oceń i napisz opinie</li>
-            <li>Sprawdź ile czytasz</li>
-            <li>Zobacz swoje statystyki</li>
+            <li>Search your favorite books</li>
+            <li>Rate and write opinions</li>
+            <li>Check how much you read</li>
+            <li>Checkout your statistics</li>
         </ul>
     </div>
     <!-- <div class="loopBook"> -->
@@ -58,19 +58,19 @@ export default {
             try {
                 const storedData = localStorage.getItem('bookLibrary');
                 if (!storedData) {
-                this.error = 'Brak zapisanych książek w bibliotece';
+                this.error = 'No books in library';
                 this.books = [];
                 return;
                 }
                 const library = JSON.parse(storedData);
                 if (!library.bookslib || !Array.isArray(library.bookslib)) {
-                throw new Error('Nieprawidłowy format danych książek');
+                throw new Error('Incorrect data format');
                 }
                 this.books = library.bookslib;
                 this.error = null;  
             } catch (err) {
-                console.error('Błąd wczytywania książek:', err);
-                this.error = 'Nie udało się wczytać książek. Sprawdź format danych.';
+                console.error('Books loading error:', err);
+                this.error = 'Cannot load books, check data format';
                 this.books = [];
             }
         },
