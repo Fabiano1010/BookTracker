@@ -1,0 +1,1497 @@
+/*APP*/
+a {
+    text-decoration: none;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+    align-items: center;
+
+}
+
+.content{
+    height: 90vh;
+}
+
+
+.navigation {
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu{
+    height: 50%;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60vw;
+    user-select: none;
+
+}
+.nav-link,.nav-logo{
+    font-size: 1rem;
+    text-decoration: none;
+    width: 25%;
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+    transition: ease-in-out 0.2s;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.nav-logo{
+    text-transform: unset;
+}
+.nav-link:hover, .nav-link:active {
+    color: rgb(168, 0, 81);
+    background-color: #2b2b2bdd;
+    cursor: pointer;
+
+}
+.nav-link:nth-child(1){
+    border-radius: 10px 0 0 10px;
+}
+.nav-link:nth-child(5){
+    border-radius: 0 10px 10px 0;
+}
+.router-link-active {
+    font-weight: bold;
+    color: #42b983;
+}
+
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+@media only screen and (min-width:520px) and (max-width:900px){
+    .navigation {
+        display: flex;
+        height: 10vh;
+        width: 90vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu{
+        display: flex;
+        height: 5vh;
+        width: 90vw;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+    .nav-link{
+
+        height: 100%;
+        padding: 0;
+    }
+
+    .nav-link:nth-child(5){
+        border-radius: 0 10px 10px 0;
+    }
+    .content{
+        height: 90vh;
+        width: 90vw;
+    }
+}
+
+@media only screen  and (max-width: 520px){
+    .navigation {
+        display: flex;
+        flex-wrap: wrap;
+        height: 40vh;
+        width: 90vh;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+    .menu{
+        display: flex;
+        flex-wrap: wrap;
+        height: 31vh;
+        width: 90vw;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+    .nav-logo{
+        width: 90vh;
+        font-size: 1.8rem;
+    }
+    .nav-link{
+        width: 50%;
+        height: 40%;
+        padding: 0;
+    }
+    .title{
+        margin-top: 2vh;
+    }
+    .home{
+        display: none;
+    }
+    .nav-link:nth-child(4){
+        border-radius: 0px 0 0 10px;
+    }
+    .nav-link:nth-child(5){
+        border-radius: 0 0px 10px 0;
+    }
+    .content{
+        height: 90vh;
+        width: 90vw;
+    }
+}
+@media only screen and (min-width:520px) and (max-width:600px){
+    .navigation, .menu{
+        width: 99vw;
+        border-radius: 10px;
+        margin-bottom: 2vh;
+    }
+
+
+}
+@media only screen and (orientation: landscape) and (max-width:1000px){
+    .navigation {
+        display: flex;
+        height: 20vh;
+        width: 170vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu{
+        display: flex;
+        height: 12vh;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+    .nav-link{
+        height: 88%;
+    }
+
+}
+@media only screen and (orientation: landscape) and (max-width:1080px){
+    .navigation {
+        display: flex;
+        height: 10vh;
+        width: 100vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu{
+        display: flex;
+        height: 6vh;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+}
+@media only screen and (orientation: landscape) and (max-width:930px){
+    .navigation {
+        display: flex;
+        height: 12vh;
+        width: 90vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu{
+        display: flex;
+        height: 8vh;
+        width: 90vw;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+}
+/*ADD*/
+.bookQueryDiv{
+    width: 50vw;
+}
+.bookQueryDiv{
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.booksQuery{
+    margin-top: 0.5vh;
+    margin-top: 0.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.searchInput{
+    height: 25px;
+    padding: 5px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    background-color: rgba(0, 0, 0, 0.363);
+    font-size: 1.1rem;
+    margin: 10px;
+}
+.books{
+    overflow-y: auto;
+    height: 51vh;
+    height: 51vh;
+    width: 25vw;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    background-color: rgba(0, 0, 0, 0.363);
+
+
+}
+.bookForm{
+    margin-top: 1vh;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    border-radius: 10px;
+    padding: 1vw;
+    background-color: rgba(0, 0, 0, 0.048);
+    width: 20vw;
+    width: 20vw;
+}
+.bookForm div{
+    margin-bottom: 2vh;
+}
+.ratingRadio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 8vw;
+
+}
+.book{
+    border-bottom: 1px solid white;
+    padding: 10px;
+}
+.btn{
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    background-color: rgba(0, 0, 0, 0.363);
+    color: white;
+    font-size: 1.05rem;
+    outline: none;
+    transition: 0.2s;
+    width: 80px;
+}
+
+.btn:hover{
+    background-color: rgba(0, 0, 0, 0.692);
+    color: rgb(168, 0, 81)
+}
+.inputEdit:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.btnClear:hover{
+    background-color: rgba(139, 1, 1, 0.692);
+    color: white;
+}
+.btnSave:hover{
+    background-color: rgba(1, 139, 31, 0.692);
+    color: white;
+}
+.formBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:80%;
+
+}
+.txtArea{
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    background-color: rgba(0, 0, 0, 0.363);
+    color: white;
+    font-size: 1.05rem;
+    padding: 5px;
+    width: 90%;
+}
+.selectDiv{
+    display: flex;
+    flex-direction: column;
+}
+.selectDiv select{
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.63) 1px;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    font-size: 1.05rem;
+    outline: none;
+    margin-top: 5px;
+}
+.selectDiv select:hover{
+    background-color: rgba(0, 0, 0, 0.842);
+}
+.timeInput{
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.63) 1px;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    font-size: 1.05rem;
+    outline: none;
+    margin-top: 5px;
+
+}
+.choosenBookDisplay{
+    text-wrap: wrap;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgb(43, 255, 0);
+}
+.ratingRadioDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-top: 5%;
+}
+.saved{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-top: 10px;
+    transition: 0.3s ease-in-out;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-from {
+    transform: scale(0.5);
+    transform-origin: top left;
+}
+.ratingRadio{
+    width: 90%;
+}
+.rating{
+    cursor: pointer;
+}
+@media only screen and (min-width:500px) and (max-width:900px){
+
+    .bookQueryDiv{
+        margin: auto;
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .booksQuery{
+        width: 58%;
+
+    }
+    .bookForm{
+        width: 38%;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: none; */
+        margin-top: 5.6vh;
+        padding-bottom: 5vh;
+    }
+    .books{
+        width: 100%;
+        /* height: 400px; */
+    }
+    .searchInput{
+        margin-right:-70% ;
+        transform: scale(1.3);
+    }
+    .bookForm div{
+        width: 90%;
+        font-size: 1.1rem;
+
+    }
+    .btn{
+        transform: scale(1.2);
+    }
+    .selectDiv{
+        display: flex;
+        align-items: center;
+
+    }
+    .selectDiv select{
+        transform: scale(1.2);
+        width: 80%;
+    }
+    .readingTimeDiv{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: baseline;
+        flex-wrap: wrap;
+
+    }
+    .readingTimeDiv input{
+        transform: scale(1.1);
+
+    }
+    .book button{
+        margin-left: 20%;
+        width: 60%;
+    }
+    .checkboxDiv{
+        display: flex;
+        justify-content: center;
+    }
+    .txtArea{
+        width: 80%;
+
+    }
+    .txtAreaDiv{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+    .glass{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+    .searchInput{
+        margin: 0;
+    }
+}
+@media only screen and (min-width:520px) and (max-width:670px){
+    .formBtns .btn{
+        transform: scale(1.05);
+
+    }
+    .formBtns .btn:nth-child(1){
+        margin-right: 5px;
+
+    }
+    .formBtns .btn:nth-child(2){
+        margin-left: 5px;
+
+    }
+    .formBtns{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .glass{
+
+    }
+    .searchInput{
+        transform: scale(1);
+    }
+    .bookForm{
+        width: 100%;
+        margin-left: 10px;
+        height: 90%;
+    }
+
+}
+
+@media only screen and (max-width:520px){
+    .bookQueryDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        height: 55vh;
+        width: 100%;
+    }
+    .searchInput{
+        margin: 15px;
+    }
+    .booksQuery{
+        width: 100%;
+        height: 70%;
+    }
+    .bookForm{
+        width: 84%;
+        padding: 20px;
+    }
+    .books{
+        width: 90%;
+        height: 80%;
+    }
+
+}
+.glass{
+    display: flex;
+
+}
+.glass img{
+    width: 35px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+.glass img:hover{
+    filter: drop-shadow(0 0 20px black);
+
+}
+@media only screen and (orientation: landscape){
+    .bookQueryDiv{
+        flex-direction: row;
+        overflow-y: auto;
+        height: 60vh;
+        padding-bottom: 50px;
+        padding-top: 50px;
+    }
+    .glass{
+        width: 350px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .searchInput{
+        transform: scale(1.1);
+        margin: 0;
+    }
+
+}
+@media only screen and (orientation: landscape) and (max-width:1080px){
+    .bookQueryDiv{
+        margin: 0;
+        height: 70vh;
+        width: 90vw;
+
+        padding-bottom: 600vh;
+        flex-direction: row;
+    }
+    .searchInput{
+        width: 165px;
+    }
+}
+@media only screen and (orientation: landscape) and (max-width:920px){
+    .bookQueryDiv{
+        height: 65vh;
+
+        padding-top: 25px;
+    }
+    .books{
+        width: 300px;
+    }
+    .bookForm{
+        width: 300px;
+        height: 400px;
+        margin-top: 150px;
+        /* padding-top: 1vh; */
+    }
+
+}
+/*FOOTER*/
+.footer{
+    font-size: 0.8rem;
+    color: gray;
+    height: 3vh;
+    position: absolute;
+    bottom: 0;
+}
+
+@media only screen and (orientation: landscape) and (max-width:1000px){
+    .footer{
+        position: absolute;
+        bottom: 5px;
+    }
+}
+/*HOME*/
+.home{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.list{
+    padding: 10px;
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.534) 1px;
+    background-color: rgba(0, 0, 0, 0.363);
+    height: 25vh;
+    margin-top: 5vh;
+}
+.list ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    margin: 0;
+}
+.list ul li{
+
+    font-size: 1.2rem;
+
+}
+.loopBook{
+    display: flex;
+    width: 20vw;
+    height: 30vh;
+    flex-direction: column;
+    margin-top: 1vh;
+
+}
+.loopTitle{
+    size: 1.2rem;
+    text-transform: uppercase;
+}
+@media only screen and (min-width:480px) and (max-width:900px){
+    .list{
+        margin: auto;
+        width: 60%;
+    }
+
+
+}
+@media only screen and (max-width:480px){
+    /* .navigation{
+        margin-bottom: 2vh;
+    } */
+}
+/*LIBRARY*/
+.bookCount{
+    size: 1.1rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bookCount button{
+    margin-left: 20px;
+}
+.bookPopupButtons{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.bookPopupButtons button{
+    font-size: 1.1rem;
+}
+.popupContent{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 75%;
+}
+.popupLeft, .popupRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding: 10px;
+}
+.popupRight{
+    text-align: right;
+    align-items: flex-end;
+}
+.popupLeft{
+    text-align: left;
+    align-items: flex-start;
+}
+.bookPopupTitle{
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    text-wrap: wrap;
+}
+.bookAuthors{
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-wrap: wrap;
+
+}
+.bookGenry{
+    font-size: 1.25rem;
+}
+.bookTime{
+    font-size: 1.4rem;
+}
+
+.bookRating{
+    display: flex;
+    flex-direction: row;
+}
+.bookRating img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.bookIsread{
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-wrap: wrap;
+    text-align: right;
+    text-decoration: underline;
+}
+.bookOpinion{
+    text-align: justify;
+    overflow: auto;
+    width: 95%;
+    height: 60%;
+}
+.clearPopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    width: 20vw;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.722);
+    margin-top: 10px;
+    text-align: center;
+    position: fixed;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.clearPopup div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+}
+.clearPopup p{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.2rem;
+
+}
+.clearPopup button{
+    border: 1px solid white;
+    margin-right: 10px;
+}
+.rating{
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: left;
+}
+.ratingStars{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.book-card-outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    flex-direction: column;
+}
+.bookTitle{
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+.errors{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+
+}
+.library{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    height: 66vh;
+    width: 95vw;
+    align-items: center;
+    overflow-x: auto;
+    padding: 0 3vw 9vh 3vw;
+    z-index: 0;
+    margin-bottom: 1vh;
+}
+
+.libBtn{
+    width: 100px;
+}
+.buttonDiv{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.book-card {
+    width: 130px;
+    height: 160px;
+    position:relative;
+    text-align: center;
+    margin:2.5%;
+}
+.stars{
+    width: 12px;
+    height: 12px;
+
+}
+
+.book-cover {
+    position: absolute;
+    z-index:1;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 50%;
+    -webkit-transform-origin: 0 50%;
+    background: #111;
+    background-size:cover;
+    border-radius: 3px;
+    box-shadow:
+            inset 4px 1px 3px #ffffff60,
+            inset 0 -1px 2px #00000080;
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    user-select: none;
+}
+.book-card .book-cover {
+    background-size: 100% 100%;
+}
+
+.bookContent {
+    width:90%;
+    height: 100%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-left: 2px solid #00000010;
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+    transition: all .5s ease;
+}
+.light {
+    width: 90%;
+    height: 100%;
+    position: absolute;
+    border-radius: 3px;
+    background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%);
+    top: 0;
+    right:0;
+    opacity: .1;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+}
+
+.book-card:hover { cursor:pointer; }
+
+.book-card:hover .book-cover,.book-card:active .book-cover {
+    transform: perspective(2000px) rotateY(-30deg);
+    -webkit-transform: perspective(2000px) rotateY(-30deg);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    box-shadow:
+            inset 4px 1px 3px #ffffff60,
+            inset 0 -1px 2px #00000080,
+            10px 0px 10px -5px #00000030
+}
+
+.book-card:hover .effect {
+    width: 40px;
+    /** margin-left:13px;
+     opacity: 0.5; **/
+}
+
+.book-card:hover .light {
+    opacity: 1;
+    width: 70%;
+}
+
+.book-inside{
+    width: calc(100% - 2px);
+    height:96%;
+    position:relative;
+    top: 2%;
+    border: 1px solid grey;
+    border-radius:3px;
+    background: white;
+    box-shadow:
+            10px 40px 40px -10px #00000030,
+            inset -2px 0 0 grey,
+            inset -3px 0 0 #dbdbdb,
+            inset -4px 0 0 white,
+            inset -5px 0 0 #dbdbdb,
+            inset -6px 0 0 white,
+            inset -7px 0 0 #dbdbdb,
+            inset -8px 0 0 white,
+            inset -9px 0 0 #dbdbdb;
+}
+.book-card:hover .btn, .book-card:hover .bookTitle {
+    opacity: 1;
+}
+.bookPopup{
+
+    background: url("https://i.imgur.com/0kjMcUe.png");
+    background-size: 1000px;
+    background-position: center right;
+    padding: 30px 80px 50px 80px;
+    z-index: 1002;
+    filter: brightness(0.95) sepia(30%) saturate(80%);
+    border-radius: 30px;
+
+    clip-path: polygon(
+            0% 0%,
+            0% 93%,
+            5% 98%,
+            6% 99%,
+            8% 95%,
+            12% 94%,
+            15% 97%,
+            17% 93%,
+            20% 98%,
+            22% 97%,
+            25% 99%,
+            31% 94%,
+            35% 93%,
+            39% 96%,
+            43% 93%,
+            45% 94%,
+            47% 95%,
+            50% 92%,
+            52% 96%,
+            54% 93%,
+            58% 92%,
+            60% 95%,
+            62% 93%,
+            65% 96%,
+            69% 93%,
+            72% 93%,
+            75% 94%,
+            79% 97%,
+            81% 94%,
+            85% 93%,
+            88% 92%,
+            90% 95%,
+            93% 93%,
+            95% 92%,
+            97% 95%,
+            100% 97%,
+            100% 0%
+    );
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    width: 60vw;
+    height: 70vh;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.722);
+    margin-top: 10px;
+    text-align: center;
+    position: fixed;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: #000;
+}
+.bookEditPopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    width: 40vw;
+    height: 55vh;
+    margin: auto;
+    border-radius: 10px;
+    background:linear-gradient(rgba(0, 0, 0, 0.718), rgba(0, 0, 0, 0.953)) ;
+    margin-top: 10px;
+    text-align: center;
+    position: fixed;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.inputEdit{
+    background-color: rgba(255, 255, 255, 0.516);
+    color: #000;
+}
+.bookEditPopup{
+    color: #fff;
+}
+.inputEditTxtArea{
+    background-color: rgba(255, 255, 255, 0.664);
+    color: #000;
+}
+.editPopupButtons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.bookEditForm{
+    margin-top: 1vh;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    border-radius: 10px;
+    padding: 1vw;
+
+    width: 20vw;
+    width: 20vw;
+}
+.bookEditForm div{
+    margin-bottom: 2vh;
+}
+.bookEditForm div select{
+    background-color: rgba(255, 255, 255, 0.664);
+    color: #000;
+}
+.bookEditForm div select:hover{
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+.ratingRadioDiv{
+    width: 90%;
+}
+.bookEditForm{
+    width: 80%;
+}
+.clearPopup div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.clearPopup div button{
+    margin: 0;
+}
+@media only screen and (min-width:520px) and (max-width:900px){
+    .library{
+        overflow-y: auto;
+        padding: 0;
+    }
+    .bookPopup{
+        width: 90vw;
+        overflow-y: auto;
+    }
+    .bookEditPopup{
+        width: 60vw;
+    }
+    .bookEditForm{
+        width: 80%;
+    }
+    .clearPopup{
+        width: 50vw;
+    }
+    .clearPopup div{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+@media only screen and (min-width:520px) and (max-width:670px){
+    .bookPopup{
+        width: 90vw;
+        overflow-y: auto;
+    }
+    .bookEditPopup{
+        width: 70vw;
+    }
+    .bookEditForm{
+        width: 80%;
+    }
+    .clearPopup{
+        width: 50vw;
+    }
+    .clearPopup div{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .library{
+        padding: 0;
+        height: 80vh;
+
+    }
+
+}
+
+@media only screen and (max-width:520px){
+    .content{
+        margin-top: -30px;
+    }
+    .library{
+        overflow-y: auto;
+        height: 300px;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        /* padding-top: 120px; */
+        /* padding-bottom: 120px; */
+        /* padding-bottom: 10vh; */
+    }
+    .book-card-outer{
+        width: 90%;
+        margin: 0;
+    }
+    .bookPopup{
+        width: 90vw;
+        height: 98vh;
+        overflow-y: auto;
+        position: absolute;
+        top:0
+    }
+    .bookEditPopup{
+        width: 70vw;
+        height: 80vh;
+    }
+    .bookEditForm{
+        width: 90%;
+    }
+    .clearPopup{
+        width: 70vw;
+    }
+    .clearPopup div{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+}
+@media only screen and (orientation: landscape){
+    .library{
+        padding: 0;
+        width: 90vw;
+    }
+    .btnClear{
+        transform: scale(1.1);
+    }
+    .bookCount{
+        margin-bottom: 10px;
+    }
+    .bookPopup{
+        position: absolute;
+        top:0;
+        height: 90vh;
+        overflow-y: auto;
+    }
+    .bookEditPopup{
+        height: 70vh;
+        position: absolute;
+        top:0
+    }
+    .bookEditForm{
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 90vh;
+
+    }
+    .btn{
+        transform: scale(0.89);
+    }
+}
+@media only screen and (orientation: landscape) and (max-width:1080px){
+    .library{
+        height: 75vh;
+        padding-bottom: 5vh;
+    }
+}
+@media only screen and (orientation: landscape) and (max-width:930px){
+    .library{
+        height: 60vh;
+        padding-bottom: 5vh;
+    }
+    .bookEditPopup{
+        height: 80vh;
+        width: 80%;
+        position: absolute;
+        top:0
+    }
+    .bookEditForm{
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 100vh;
+
+    }
+}
+
+/*STATISTICS*/
+
+.stats{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90vw;
+    height: 90vh;
+    margin-top: 10px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.statsText{
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+.stat{
+    width: 28vw;
+    height: 30vh;
+    padding: 5px;
+}
+
+.statData{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+
+}
+.svgOuter{
+    width: 350px;
+    height: 350px;
+    transform: rotate(135deg);
+}
+.svgCircle{
+    fill: none;
+    stroke: rgb(0, 154, 192);
+    stroke-width: 25px;
+    cx: 150px;
+    cy: 200px;
+    r: 100px;
+    stroke-linecap:round;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 628;
+    transition: 1.5s ease-in-out;
+    filter: drop-shadow(0px 0px 10px rgb(0, 154, 192));
+
+}
+
+.averageTimeStat{
+    position: relative;
+    z-index: 100;
+    bottom: 232px;
+    font-size: 2.5rem;
+    display: flex;
+
+}
+.maxStat{
+    color: #a5a5a5;
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+.ratingCircle{
+    stroke: rgb(192, 179, 0);
+    filter: drop-shadow(0px 0px 10px rgb(192, 179, 0));
+}
+.opinionCircle{
+    stroke: rgb(192, 0, 58);
+    filter: drop-shadow(0px 0px 10px rgb(192, 0, 58));
+}
+.readCircle{
+    stroke: rgb(0, 192, 112);
+    filter: drop-shadow(0px 0px 10px rgb(0, 192, 112));
+}
+.sumTimeStat{
+    margin-top: -15%;
+    font-size: 3rem;
+    animation: forwards colors 2s;
+}
+.mostLikedGenryStat{
+    margin-top: -15%;
+    font-size: 0.5rem;
+    animation: forwards showGen 1s;
+    opacity: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+}
+@keyframes showGen {
+    100%{
+        opacity: 1;
+        font-size: 2.2rem;
+        color: rgb(255, 196, 0);
+    }
+}
+@keyframes colors {
+    100%{
+        color: rgb(30, 255, 0);
+    }
+    75%{
+        color: rgb(200, 255, 0);
+    }
+    50%{
+        color: rgb(255, 196, 0);
+    }
+    25%{
+        color: rgb(255, 0, 0);
+        opacity: 1;
+    }
+    0%{
+        opacity: 0;
+    }
+}
+
+@media only screen and (min-width:520px) and (max-width:900px){
+    .stats{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        overflow-x: hidden;
+        width: 95vw;
+    }
+    .stat{
+        width: 48%;
+
+    }
+    .statsText{
+        width: 80%;
+    }
+}
+@media only screen and (max-width:520px){
+    .stats{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-self: center;
+        align-items: center;
+        margin-top: 1vh;
+        width: 90vw;
+        height: 70vh;
+        overflow-x: hidden;
+    }
+    .statsText{
+        width: 100%;
+    }
+    .stat{
+        width: 80%;
+        height: 300px;
+    }
+    .mostLikedGenryStat, .sumTimeStat{
+        margin-bottom: 40px;
+    }
+}
+@media only screen and (orientation: landscape) and (max-width:1481px){
+    .stats{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .stat{
+        width: 48%;
+        height: 300px;
+    }
+    .statData{
+        height: 400px;
+    }
+
+}
+@media only screen and (orientation: landscape) and (max-width:1080px){
+    .stats{
+        overflow-y: auto;
+        height: 90vh;
+    }
+}
+@media screen and (max-height:941px) {
+    .stats{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 100vh;
+        overflow-y: auto;
+    }
+    .stat{
+        width: 48%;
+        height: 300px;
+    }
+    .statData{
+        height: 400px;
+    }
+}

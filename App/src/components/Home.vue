@@ -116,55 +116,5 @@ export default {
 </script>
 
 <style>
-    .home{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-    .list{
-        padding: 10px;
-        border-radius: 10px;
-        border: solid rgba(0, 0, 0, 0.534) 1px;
-        background-color: rgba(0, 0, 0, 0.363);
-        height: 25vh;
-        margin-top: 5vh;
-    }
-    .list ul{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 100%;
-        margin: 0;
-    }
-    .list ul li{
-        
-        font-size: 1.2rem;
 
-    }
-    .loopBook{
-        display: flex;
-        width: 20vw;
-        height: 30vh;
-        flex-direction: column;
-        margin-top: 1vh;
-
-    }
-    .loopTitle{
-        size: 1.2rem;
-        text-transform: uppercase;
-    }
-    @media only screen and (min-width:480px) and (max-width:900px){
-        .list{
-            margin: auto;
-            width: 60%;
-        }
-
-
-    }
-    @media only screen and (max-width:480px){
-        /* .navigation{
-            margin-bottom: 2vh;
-        } */
-    }
 </style>
