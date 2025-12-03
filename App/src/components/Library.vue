@@ -105,7 +105,7 @@
             </div>
           <div class="selectDiv">
             <label for="genry">Most suitable genry: </label>
-            <select name="genry" id="genry" v-model="newBook.genry" required>
+            <select name="genry" id="genry" v-model="this.editBook.genry" required>
               <option value="none">--choose genry--</option>
               <option value="crime">Crime</option>
               <option value="fantasy">Fantasy</option>
