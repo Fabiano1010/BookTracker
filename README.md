@@ -1,4 +1,4 @@
-#📖 About the Project
+# About the Project
 
 ## BookTracker is a Vue.js application that helps you manage your reading list. It allows you to:
 
@@ -25,27 +25,27 @@
    
    - Clear the entire library if needed
 
-### 🚀 Features
+### Features
 
-🔹 Search & Add Books – Fetch book details from Google Books
-🔹 Reading Stats – Visual progress bars for insights
-🔹 Interactive Popup – Click any book to see/edit full details
-🔹 Persistent Storage – Data saved in localStorage
-### 🛠 Tech Stack
+- Search & Add Books – Fetch book details from Google Books
+- Reading Stats – Visual progress bars for insights
+- Interactive Popup – Click any book to see/edit full details
+- Persistent Storage – Data saved in localStorage
+### Tech Stack
 
   - Vue.js (Composition API)
 
   - Google Books API
 
-### 📌 Demo / Installation
+### Demo / Installation
 
     git clone [repo-url]
     npm install
     npm run dev
   You also need Google Books API Key, you can add yours in config.js
-⭐ If you liked the project, leave a star! ⭐
+  If you liked the project, leave a star! 
 
-# 📖 O Projekcie
+# O Projekcie
 ![image](https://github.com/user-attachments/assets/d4a5a342-6103-4460-b869-60b2314c3c7c)
 
 ## BookTracker to aplikacja napisana w Vue.js, która pomaga śledzić przeczytane książki. Pozwala na:
@@ -88,22 +88,22 @@
 
     Przechowywanie danych w localStorage
 
-### 🚀 Funkcje
+### Funkcje
 
-🔹 Wyszukiwanie książek – Dane z Google Books API
-🔹 Statystyki – Progress bary i podsumowania
-🔹 Interaktywny Popup – Pełne informacje o książce
-🔹 Dane w localStorage – Nie znikają po odświeżeniu
-### 🛠 Technologie
+- Wyszukiwanie książek – Dane z Google Books API
+- Statystyki – Progress bary i podsumowania
+- Interaktywny Popup – Pełne informacje o książce
+- Dane w localStorage – Nie znikają po odświeżeniu
+### Technologie
 
 - Vue.js (Composition API)
 
 - Google Books API
 
-### 📌 Demo / Instalacja
+### Demo / Instalacja
 
     git clone [repo-url]
     npm install
     npm run dev
 Należy dodać klucz Google Books API w pliku config.js
-⭐ Daj gwiazdkę, jeśli projekt Ci się podoba! ⭐
+Zostaw gwiazdkę, jeśli projekt Ci się podoba!
